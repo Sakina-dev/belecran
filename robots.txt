@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://midnightstudio-three.vercel.app/sitemap.xml
+Sitemap: https://belecran.vercel.app/sitemap.xml

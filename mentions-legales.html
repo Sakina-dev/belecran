@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions légales — Bel Écran</title>
+    <meta name="robots" content="noindex, follow">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Pinyon+Script&family=Manrope:wght@300&display=swap">
+    <style>
+        :root { --night: #0B132B; --night-2: #1C2541; --gold: #D4AF37; --gold-light: #E8C77A; --ivory: #F4EFE6; --muted: #B9BED0; }
+        * { box-sizing: border-box; }
+        body { margin: 0; background: var(--night); color: var(--muted); font-family: "DM Sans", system-ui, sans-serif; line-height: 1.7; }
+        a { color: var(--gold-light); }
+        a:hover { color: var(--ivory); }
+        header, main, footer { max-width: 760px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+        header { padding-block: 32px 8px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .brand { text-decoration: none; display: inline-flex; align-items: baseline; gap: 0.4em; white-space: nowrap; }
+        .brand .bel { font-family: "Pinyon Script", cursive; color: var(--gold-light); font-size: 2.2rem; line-height: 0.9; }
+        .brand .ecran { font-family: "Manrope", sans-serif; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: #fff; font-size: 1.05rem; }
+        .back { font-size: 0.9rem; }
+        main { padding-block: 24px 48px; }
+        h1 { color: #fff; font-weight: 600; font-size: clamp(1.8rem, 4vw, 2.4rem); margin: 0 0 8px; }
+        h2 { color: var(--gold-light); font-weight: 600; font-size: 1.15rem; margin: 40px 0 10px; letter-spacing: 0.02em; }
+        p { margin: 0 0 12px; }
+        dl { display: grid; grid-template-columns: minmax(0, 12rem) minmax(0, 1fr); gap: 8px 20px; margin: 0; }
+        dt { color: #fff; font-weight: 500; }
+        dd { margin: 0; min-width: 0; overflow-wrap: anywhere; }
+        @media (max-width: 560px) { dl { grid-template-columns: minmax(0, 1fr); } dd { margin-bottom: 8px; } }
+        .updated { font-size: 0.85rem; }
+        footer { padding-block: 24px 40px; border-top: 1px solid rgba(212, 175, 55, 0.18); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="brand" href="./" aria-label="Bel Écran, retour à l'accueil"><span class="bel">Bel</span><span class="ecran">Écran</span></a>
+        <a class="back" href="./">← Retour au site</a>
+    </header>
+
+    <main>
+        <h1>Mentions légales</h1>
+        <p class="updated">Dernière mise à jour : octobre 2026</p>
+
+        <h2>Éditrice du site</h2>
+        <dl>
+            <dt>Nom</dt><dd>Sakina Zariouh</dd>
+            <dt>Statut</dt><dd>Entrepreneur individuel (EI), micro-entreprise</dd>
+            <dt>Nom commercial</dt><dd>Bel Écran</dd>
+            <dt>SIRET</dt><dd>131 669 152 00012</dd>
+            <dt>Adresse</dt><dd>14 rue de l'Aigle, 68200 Mulhouse, France</dd>
+            <dt>E-mail</dt><dd><a href="mailto:midnightstudio162@gmail.com">midnightstudio162@gmail.com</a></dd>
+            <dt>TVA</dt><dd>TVA non applicable, article 293 B du Code général des impôts</dd>
+            <dt>Directrice de la publication</dt><dd>Sakina Zariouh</dd>
+        </dl>
+
+        <h2>Hébergement</h2>
+        <dl>
+            <dt>Hébergeur</dt><dd>Vercel Inc.</dd>
+            <dt>Adresse</dt><dd>440 N Barranca Ave #4133, Covina, CA 91723, États-Unis</dd>
+            <dt>Site</dt><dd><a href="https://vercel.com" rel="noopener">vercel.com</a></dd>
+        </dl>
+
+        <h2>Propriété intellectuelle</h2>
+        <p>Les textes, le logo, les visuels et la mise en page de ce site sont la propriété de Sakina Zariouh, sauf mention contraire. Les réalisations présentées restent la propriété de leurs clients respectifs et sont montrées avec leur accord. Toute reproduction sans autorisation est interdite.</p>
+
+        <h2>Données personnelles</h2>
+        <p>Le formulaire de contact recueille votre nom, votre adresse e-mail, le type de projet et votre message. Ces données servent uniquement à répondre à votre demande. Elles ne sont ni vendues ni transmises à des tiers à des fins commerciales.</p>
+        <p>Les messages sont transmis par le service Formspree, puis reçus par e-mail. Ils sont conservés au maximum 3 ans après le dernier échange.</p>
+        <p>Conformément au RGPD, vous pouvez demander l'accès, la rectification ou la suppression de vos données en écrivant à <a href="mailto:midnightstudio162@gmail.com">midnightstudio162@gmail.com</a>. Vous pouvez aussi adresser une réclamation à la CNIL (<a href="https://www.cnil.fr" rel="noopener">cnil.fr</a>).</p>
+
+        <h2>Cookies</h2>
+        <p>Ce site ne dépose aucun cookie publicitaire ni traceur de mesure d'audience.</p>
+    </main>
+
+    <footer>Bel Écran © 2026 — Sakina Zariouh, EI</footer>
+</body>
+</html>

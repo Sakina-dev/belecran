@@ -1,18 +1,14 @@
 {
-  "name": "Midnight Studio",
-  "short_name": "Midnight",
-  "description": "Design UX/UI, développement web full-stack et SEO.",
+  "name": "Bel Écran",
+  "short_name": "Bel Écran",
+  "description": "Création de sites web sur mesure : design UX/UI, développement et SEO.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0B132B",
   "theme_color": "#0B132B",
   "lang": "fr",
   "icons": [
-    {
-      "src": "./midnight_logo.png",
-      "sizes": "320x320",
-      "type": "image/png",
-      "purpose": "any"
-    }
+    { "src": "./favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any" },
+    { "src": "./apple-touch-icon.png", "sizes": "180x180", "type": "image/png", "purpose": "any" }
   ]
 }
