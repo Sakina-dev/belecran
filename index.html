@@ -1859,7 +1859,7 @@
         .be-try { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; align-items: center; }
         @media (min-width: 900px) { .be-try { grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr); gap: 4rem; } }
         .be-try-controls { border-radius: 1.25rem; padding: clamp(1.4rem, 3vw, 2.25rem); display: flex; flex-direction: column; gap: 1.5rem; }
-        .be-field label, .be-field legend { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212, 175, 55, 0.95); margin-bottom: 0.6rem; }
+        .be-field > label, .be-field > legend { display: block; font-size: 0.72rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(212, 175, 55, 0.95); margin-bottom: 0.6rem; }
         .be-field { border: 0; padding: 0; margin: 0; min-width: 0; }
         .be-input { width: 100%; border-radius: 0.6rem; background: rgba(11, 19, 43, 0.55); border: 1px solid rgba(255, 255, 255, 0.18); padding: 0.85rem 1rem; color: #F4EFE6; font: 400 1rem "DM Sans", sans-serif; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
         .be-input::placeholder { color: rgba(244, 239, 230, 0.45); }
@@ -1873,7 +1873,8 @@
         .be-mood input { position: absolute; opacity: 0; inset: 0; cursor: pointer; margin: 0; }
         .be-mood:has(input:checked) { border-color: var(--gold); background: rgba(212, 175, 55, 0.12); color: #fff; }
         .be-mood:has(input:focus-visible) { outline: 2px solid var(--gold); outline-offset: 2px; }
-        .be-mood-swatch { width: 2.1rem; height: 2.1rem; border-radius: 50%; background: linear-gradient(135deg, var(--a) 0 50%, var(--b) 50% 100%); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 4px 12px rgba(0, 0, 0, 0.35); }
+        .be-mood-swatch { display: block; width: 2.1rem; height: 2.1rem; border-radius: 50%; background: linear-gradient(135deg, var(--a) 0 50%, var(--b) 50% 100%); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.85), 0 4px 12px rgba(0, 0, 0, 0.35); }
+        @media (max-width: 899px) { .be-try-stage { order: -1; } .be-phone { width: min(260px, 72vw); } }
         .be-try-cta { display: inline-flex; justify-content: center; align-items: center; gap: 0.6rem; width: 100%; border: 0; border-radius: 0.6rem; padding: 0.95rem 1.2rem; font: 600 0.95rem "DM Sans", sans-serif; letter-spacing: 0.02em; color: #0B132B; cursor: pointer; }
         .be-try-note { font-size: 0.75rem; color: rgba(244, 239, 230, 0.6); line-height: 1.5; margin-top: -0.5rem; }
 
@@ -2922,7 +2923,7 @@
                 <p class="be-ba-caption">Exemple fictif, créé pour la démonstration.</p>
                 <ul class="be-ba-points">
                     <li class="glass"><i class="fas fa-eye" aria-hidden="true"></i><span><strong>Compris en 5 secondes</strong>Un message clair et une seule action principale.</span></li>
-                    <li class="glass"><i class="fas fa-mobile-screen" aria-hidden="true"></i><span><strong>Pensé pour le téléphone</strong>Lisible et rapide, partout, sans zoomer.</span></li>
+                    <li class="glass"><i class="fas fa-mobile-alt" aria-hidden="true"></i><span><strong>Pensé pour le téléphone</strong>Lisible et rapide, partout, sans zoomer.</span></li>
                     <li class="glass"><i class="fas fa-hand-pointer" aria-hidden="true"></i><span><strong>Un vrai bouton d'action</strong>Commander, réserver ou appeler en un geste.</span></li>
                 </ul>
             </div>
@@ -3720,7 +3721,7 @@
             var SECTORS = {
                 restaurant: { label: "Restaurant, café", icon: "fa-utensils", tagline: "Une cuisine de saison, servie avec le sourire.", cta: "Réserver une table", cards: [["fa-book-open", "La carte"], ["fa-calendar-check", "Réserver"], ["fa-bag-shopping", "À emporter"]] },
                 beaute: { label: "Beauté & bien-être", icon: "fa-spa", tagline: "Prenez un moment rien que pour vous.", cta: "Prendre rendez-vous", cards: [["fa-leaf", "Soins"], ["fa-tag", "Tarifs"], ["fa-calendar-check", "Réserver"]] },
-                sante: { label: "Santé & thérapie", icon: "fa-heart-pulse", tagline: "Un accompagnement humain, à votre écoute.", cta: "Prendre rendez-vous", cards: [["fa-house-medical", "Le cabinet"], ["fa-stethoscope", "Séances"], ["fa-phone", "Contact"]] },
+                sante: { label: "Santé & thérapie", icon: "fa-heart-pulse", tagline: "Un accompagnement humain, à votre écoute.", cta: "Prendre rendez-vous", cards: [["fa-notes-medical", "Le cabinet"], ["fa-stethoscope", "Séances"], ["fa-phone", "Contact"]] },
                 artisan: { label: "Artisan & bâtiment", icon: "fa-hammer", tagline: "Le savoir-faire local, du devis à la finition.", cta: "Demander un devis", cards: [["fa-images", "Réalisations"], ["fa-screwdriver-wrench", "Services"], ["fa-file-signature", "Devis"]] },
                 boutique: { label: "Boutique & créateur", icon: "fa-bag-shopping", tagline: "Des pièces choisies avec soin, livrées chez vous.", cta: "Découvrir la boutique", cards: [["fa-star", "Nouveautés"], ["fa-layer-group", "Collections"], ["fa-truck", "Livraison"]] },
                 formation: { label: "Formation & coaching", icon: "fa-graduation-cap", tagline: "Apprenez à votre rythme, accompagné pas à pas.", cta: "Voir les formations", cards: [["fa-book", "Programmes"], ["fa-route", "Méthode"], ["fa-pen-to-square", "Inscription"]] },
