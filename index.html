@@ -62,7 +62,6 @@
                 "@id": "#organization",
                 "name": "Bel Écran",
                 "description": "Studio de design UX/UI, développement web full-stack et SEO. Création de sites sur mesure et identités visuelles.",
-                "email": "midnightstudio162@gmail.com",
                 "founder": {
                     "@type": "Person",
                     "name": "Sakina Zariouh"
@@ -2920,10 +2919,8 @@
                     Discutons de <span class="heading-accent text-goldLight font-normal">votre projet</span>
                 </h2>
                 <p class="text-muted text-sm md:text-base leading-relaxed">
-                    Remplissez ce formulaire ou écrivez-moi directement à
-                    <a href="mailto:midnightstudio162@gmail.com" class="text-gold hover:text-goldLight underline underline-offset-4 decoration-gold/40 hover:decoration-gold transition">
-                        midnightstudio162@gmail.com
-                    </a>.
+                    Plus j'en sais sur votre projet, plus notre premier échange sera utile.
+                    Remplissez ce formulaire&nbsp;: je vous recontacte sous 24h pour en parler.
                 </p>
             </div>
 
@@ -2978,6 +2975,11 @@
                         </div>
 
                         <div>
+                            <label for="contact-phone" class="block text-xs font-semibold tracking-widest uppercase text-gold/90 mb-2">Téléphone <span class="normal-case tracking-normal font-normal text-muted">(facultatif)</span></label>
+                            <input type="tel" id="contact-phone" name="telephone" autocomplete="tel" class="w-full rounded-lg bg-midnight/50 border border-white/15 px-4 py-3 text-sm text-gray-100 placeholder-gray-500 outline-none transition focus:border-gold focus:ring-1 focus:ring-gold/80" placeholder="06 12 34 56 78" />
+                        </div>
+
+                        <div>
                             <label for="contact-type" class="block text-xs font-semibold tracking-widest uppercase text-gold/90 mb-2">Type de projet</label>
                             <select
                                 id="contact-type"
@@ -2994,6 +2996,42 @@
                         </div>
 
                         <div>
+                            <label for="contact-site" class="block text-xs font-semibold tracking-widest uppercase text-gold/90 mb-2">Votre site actuel <span class="normal-case tracking-normal font-normal text-muted">(facultatif)</span></label>
+                            <input type="text" id="contact-site" name="site_actuel" autocomplete="url" class="w-full rounded-lg bg-midnight/50 border border-white/15 px-4 py-3 text-sm text-gray-100 placeholder-gray-500 outline-none transition focus:border-gold focus:ring-1 focus:ring-gold/80" placeholder="www.votre-site.fr, ou « pas encore de site »" />
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div>
+                                <label for="contact-budget" class="block text-xs font-semibold tracking-widest uppercase text-gold/90 mb-2">Budget envisagé</label>
+                                <select id="contact-budget" name="budget" class="w-full rounded-lg bg-midnight/50 border border-white/15 px-4 py-3 text-sm text-gray-100 placeholder-gray-500 outline-none transition focus:border-gold focus:ring-1 focus:ring-gold/80 cursor-pointer">
+                                <option value="Je ne sais pas encore">Je ne sais pas encore</option>
+                                <option value="Moins de 500 €">Moins de 500 €</option>
+                                <option value="500 à 1 000 €">500 à 1 000 €</option>
+                                <option value="1 000 à 2 500 €">1 000 à 2 500 €</option>
+                                <option value="Plus de 2 500 €">Plus de 2 500 €</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="contact-delai" class="block text-xs font-semibold tracking-widest uppercase text-gold/90 mb-2">Délai souhaité</label>
+                                <select id="contact-delai" name="delai" class="w-full rounded-lg bg-midnight/50 border border-white/15 px-4 py-3 text-sm text-gray-100 placeholder-gray-500 outline-none transition focus:border-gold focus:ring-1 focus:ring-gold/80 cursor-pointer">
+                                <option value="Pas de date précise">Pas de date précise</option>
+                                <option value="Dès que possible">Dès que possible</option>
+                                <option value="D'ici 1 mois">D'ici 1 mois</option>
+                                <option value="Dans 1 à 3 mois">Dans 1 à 3 mois</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div>
+                            <label for="contact-pref" class="block text-xs font-semibold tracking-widest uppercase text-gold/90 mb-2">Pour en parler, vous préférez</label>
+                            <select id="contact-pref" name="contact_prefere" class="w-full rounded-lg bg-midnight/50 border border-white/15 px-4 py-3 text-sm text-gray-100 placeholder-gray-500 outline-none transition focus:border-gold focus:ring-1 focus:ring-gold/80 cursor-pointer">
+                                <option value="Un appel">Un appel</option>
+                                <option value="Une visio">Une visio</option>
+                                <option value="Un échange par e-mail">Un échange par e-mail</option>
+                            </select>
+                        </div>
+
+                        <div>
                             <label for="contact-details" class="block text-xs font-semibold tracking-widest uppercase text-gold/90 mb-2">Détails du projet</label>
                             <textarea
                                 id="contact-details"
@@ -3001,7 +3039,7 @@
                                 required
                                 rows="5"
                                 class="w-full resize-y min-h-[140px] rounded-lg bg-midnight/50 border border-white/15 px-4 py-3 text-sm text-gray-100 placeholder-gray-500 outline-none transition focus:border-gold focus:ring-1 focus:ring-gold/80"
-                                placeholder="Décrivez votre besoin, vos délais, votre budget indicatif…"
+                                placeholder="Votre activité, vos objectifs, ce qui vous plaît ou non dans votre site actuel, des sites que vous aimez…"
                             ></textarea>
                         </div>
                     </div>
@@ -3059,7 +3097,7 @@
                             });
                         })
                         .catch(function () {
-                            alert("Une erreur est survenue. Réessayez ou écrivez à midnightstudio162@gmail.com.");
+                            alert("Une erreur est survenue. Réessayez dans quelques instants.");
                         })
                         .finally(function () {
                             btn.disabled = false;
