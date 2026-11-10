@@ -47,7 +47,7 @@
     <script>
         (function () {
             try {
-                if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !sessionStorage.getItem("be-intro")) {
+                if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && !localStorage.getItem("be-intro")) {
                     document.documentElement.classList.add("be-intro");
                 }
             } catch (e) {}
@@ -109,7 +109,6 @@
     <link rel="dns-prefetch" href="https://cdnjs.cloudflare.com">
     <link rel="dns-prefetch" href="https://formspree.io">
 
-    <link rel="preload" as="image" href="./backgroundblue.webp" media="(max-width: 767px)">
 
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Syne:wght@600;700;800&family=Pinyon+Script&family=Manrope:wght@300;500&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Syne:wght@600;700;800&family=Pinyon+Script&family=Manrope:wght@300;500&display=swap"></noscript>
@@ -268,10 +267,9 @@
         .page-backdrop-image {
             position: absolute;
             inset: 0;
-            background-image: image-set(url("./backgroundblue.webp") type("image/webp"), url("./backgroundblue.png") type("image/png"));
-            background-position: center;
-            background-size: cover;
-            background-repeat: no-repeat;
+            background:
+                radial-gradient(60% 45% at 50% 0%, rgba(212, 175, 55, 0.10), transparent 70%),
+                radial-gradient(120% 80% at 50% 10%, #16224A 0%, #0B132B 50%, #070C1D 100%);
             transform: translateZ(0);
         }
 
@@ -1850,10 +1848,10 @@
         #be-intro.is-open .be-intro-door--r { transform: translateX(101%); }
         #be-intro.is-open .be-intro-logo { opacity: 0; transform: translate(-50%, -50%) scale(1.08); animation: none; }
         #be-intro.is-open .be-intro-seam, #be-intro.is-open .be-intro-skip { opacity: 0; transition: opacity 0.3s ease; }
-        html.be-intro .hero-inner > .hero-brand { animation-delay: 1.55s; }
-        html.be-intro .hero-inner > .hero-headline { animation-delay: 1.68s; }
-        html.be-intro .hero-inner > .hero-lead { animation-delay: 1.82s; }
-        html.be-intro .hero-inner > .hero-cta { animation-delay: 1.92s; }
+        html.be-intro .hero-inner > .hero-brand { animation-delay: 1.2s; }
+        html.be-intro .hero-inner > .hero-headline { animation-delay: 1.32s; }
+        html.be-intro .hero-inner > .hero-lead { animation-delay: 1.45s; }
+        html.be-intro .hero-inner > .hero-cta { animation-delay: 1.55s; }
 
         /* ---------- Essai : votre marque dans l'écrin ---------- */
         .be-try { display: grid; grid-template-columns: minmax(0, 1fr); gap: 2.5rem; align-items: center; }
@@ -1977,6 +1975,8 @@
             .new-badges { display: none; }
         }
 
+        .web-projects-shell.is-collapsed .web-projects-list > article:nth-of-type(n+4) { display: none; }
+
         /* ---------- Méthode ---------- */
         .be-steps { list-style: none; display: grid; grid-template-columns: minmax(0, 1fr); gap: 1.1rem; counter-reset: none; position: relative; }
         @media (min-width: 640px) { .be-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -2058,7 +2058,6 @@
         <button type="button" class="be-intro-skip" id="be-intro-skip" tabindex="-1">Passer l'intro</button>
     </div>
 
-    <div id="cursor-dot" aria-hidden="true"></div>
 
     <nav id="site-nav" class="site-nav" aria-label="Navigation principale">
         <div class="nav-mobile">
@@ -2086,11 +2085,11 @@
                 <span class="be-word"><span class="be-bel">Bel</span><span class="be-ecran">Écran</span></span>
             </a>
             <div class="nav-desktop-links flex items-center gap-8 text-sm text-white/90">
-                <a href="#essai" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">L'écrin</a>
                 <a href="#projets" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">Projets</a>
+                <a href="#essai" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">L'écrin</a>
                 <a href="#methode" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">Méthode</a>
-                <a href="#diagnostic" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">Diagnostic</a>
                 <a href="#a-propos" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">À propos</a>
+                <a href="./diagnostic.html" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">Diagnostic</a>
             </div>
             <a href="#contact" class="magnetic interactive gold-glow shrink-0 whitespace-nowrap rounded-full btn-gold px-5 py-2 text-sm font-semibold text-midnight transition">
                 Parlons projet
@@ -2100,11 +2099,11 @@
         <div id="nav-drawer" class="nav-drawer" aria-hidden="true" inert>
             <p class="nav-drawer-label">Navigation</p>
             <ul class="nav-drawer-links">
-                <li><a href="#essai" class="nav-drawer-link interactive">L'écrin</a></li>
-                <li><a href="#expertise" class="nav-drawer-link interactive">Expertise</a></li>
+                <li><a href="#expertise" class="nav-drawer-link interactive">Services</a></li>
                 <li><a href="#projets" class="nav-drawer-link interactive">Projets</a></li>
+                <li><a href="#essai" class="nav-drawer-link interactive">L'écrin</a></li>
                 <li><a href="#methode" class="nav-drawer-link interactive">Méthode</a></li>
-                <li><a href="#diagnostic" class="nav-drawer-link interactive">Diagnostic</a></li>
+                <li><a href="./diagnostic.html" class="nav-drawer-link interactive">Diagnostic</a></li>
                 <li><a href="#a-propos" class="nav-drawer-link interactive">À propos</a></li>
                 <li><a href="#contact" class="nav-drawer-link interactive">Contact</a></li>
             </ul>
@@ -2133,14 +2132,7 @@
                 </div>
             </div>
 
-            <h1 class="hero-headline hero-frame" tabindex="0">
-                <span class="hero-frame-ui" aria-hidden="true">
-                    <span class="hero-frame-label">Frame · Hero / Landing</span>
-                    <i class="hero-frame-handle hero-frame-handle--tl"></i>
-                    <i class="hero-frame-handle hero-frame-handle--tr"></i>
-                    <i class="hero-frame-handle hero-frame-handle--bl"></i>
-                    <i class="hero-frame-handle hero-frame-handle--br"></i>
-                </span>
+            <h1 class="hero-headline">
                 <span class="hero-line-1" id="hero-line-1">Votre marque mérite</span>
                 <span class="hero-line-2">un bel écran.</span><span class="hero-cursor" aria-hidden="true"></span>
             </h1>
@@ -2158,125 +2150,55 @@
         </div>
     </header>
 
-    <section id="expertise" class="section-lazy py-24 px-6 relative z-10 section-veil section-contrast">
+    <section id="expertise" class="section-lazy py-24 px-6 relative z-10 section-veil section-contrast scroll-mt-36">
         <div class="max-w-7xl mx-auto">
             <div class="text-center mb-16 fade-in-up">
                 <h2 class="text-[clamp(1.9rem,3vw,2.5rem)] mb-4">
-                    <span class="heading-display font-bold text-white">Mes Domaines</span>
-                    <span class="heading-accent text-goldLight"> d'Expertise</span>
+                    <span class="heading-display font-bold text-white">Ce que je fais</span>
+                    <span class="heading-accent text-goldLight"> pour vous</span>
                 </h2>
                 <div class="accent-line"></div>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <article class="fade-in-up glass p-8 rounded-2xl hover:border-gold/45 hover:shadow-warm transition duration-500 group shadow-soft">
-                    <i class="fas fa-pen-nib text-3xl text-gold mb-6 group-hover:scale-110 transition duration-300"></i>
-                    <h3 class="text-xl text-white heading-display font-semibold mb-4">Architecture & <span class="heading-accent text-champagne font-normal">UX/UI</span></h3>
+                    <i class="fas fa-pen-nib text-3xl text-gold mb-6 group-hover:scale-110 transition duration-300" aria-hidden="true"></i>
+                    <h3 class="text-xl text-white heading-display font-semibold mb-4">Une image qui <span class="heading-accent text-champagne font-normal">inspire confiance</span></h3>
                     <p class="text-sm text-white/90 mb-6 font-normal leading-relaxed">
-                        Conception d'interfaces centrées utilisateur et création de chartes graphiques complètes pour asseoir la crédibilité de marque.
+                        Logo, couleurs, cartes de visite&nbsp;: une identité cohérente, pour qu'on vous reconnaisse et qu'on vous choisisse.
                     </p>
-                    <ul class="text-xs text-muted space-y-2">
-                        <li><span class="text-gold mr-2">▹</span>Figma & Suite Adobe</li>
-                        <li><span class="text-gold mr-2">▹</span>Prototypage & User Flow</li>
-                        <li><span class="text-gold mr-2">▹</span>Identité visuelle</li>
+                    <ul class="text-sm text-muted space-y-2">
+                        <li><span class="text-gold mr-2">▹</span>Identité visuelle et logo</li>
+                        <li><span class="text-gold mr-2">▹</span>Cartes de visite et supports imprimés</li>
+                        <li><span class="text-gold mr-2">▹</span>Maquette validée avant le développement</li>
                     </ul>
                 </article>
 
                 <article class="fade-in-up glass p-8 rounded-2xl hover:border-gold/45 hover:shadow-warm transition duration-500 group shadow-soft [transition-delay:120ms]">
-                    <i class="fas fa-code text-3xl text-gold mb-6 group-hover:scale-110 transition duration-300"></i>
-                    <h3 class="text-xl text-white heading-display font-semibold mb-4">Développement <span class="heading-accent text-goldLight font-normal">Full-Stack</span></h3>
+                    <i class="fas fa-laptop-code text-3xl text-gold mb-6 group-hover:scale-110 transition duration-300" aria-hidden="true"></i>
+                    <h3 class="text-xl text-white heading-display font-semibold mb-4">Un site qui <span class="heading-accent text-goldLight font-normal">travaille pour vous</span></h3>
                     <p class="text-sm text-white/90 mb-6 font-normal leading-relaxed">
-                        Développement d'applications web dynamiques, intégration pixel perfect responsive et gestion de bases de données.
+                        Un site clair et rapide, sur téléphone comme sur ordinateur, qui transforme vos visiteurs en appels, réservations ou ventes.
                     </p>
-                    <ul class="text-xs text-muted space-y-2">
-                        <li><span class="text-gold mr-2">▹</span>React.js / JavaScript ES6</li>
-                        <li><span class="text-gold mr-2">▹</span>PHP 8 & MySQL</li>
-                        <li><span class="text-gold mr-2">▹</span>WordPress & PrestaShop</li>
+                    <ul class="text-sm text-muted space-y-2">
+                        <li><span class="text-gold mr-2">▹</span>Site vitrine ou site une page</li>
+                        <li><span class="text-gold mr-2">▹</span>Boutique en ligne</li>
+                        <li><span class="text-gold mr-2">▹</span>Prise de rendez-vous et formulaires</li>
                     </ul>
                 </article>
 
                 <article class="fade-in-up glass p-8 rounded-2xl hover:border-gold/45 hover:shadow-warm transition duration-500 group shadow-soft [transition-delay:240ms]">
-                    <i class="fas fa-chart-line text-3xl text-gold mb-6 group-hover:scale-110 transition duration-300"></i>
-                    <h3 class="text-xl text-white heading-display font-semibold mb-4">Performance & <span class="heading-accent text-champagne font-normal">Data</span></h3>
+                    <i class="fas fa-search-location text-3xl text-gold mb-6 group-hover:scale-110 transition duration-300" aria-hidden="true"></i>
+                    <h3 class="text-xl text-white heading-display font-semibold mb-4">Être trouvé <span class="heading-accent text-champagne font-normal">sur Google</span></h3>
                     <p class="text-sm text-white/90 mb-6 font-normal leading-relaxed">
-                        Audit technique, optimisation des temps de chargement et implémentation d'outils de tracking respectueux du RGPD.
+                        Un référencement soigné pour que vos futurs clients vous trouvent près de chez eux, et un site assez rapide pour qu'ils restent.
                     </p>
-                    <ul class="text-xs text-muted space-y-2">
-                        <li><span class="text-gold mr-2">▹</span>Google Lighthouse</li>
-                        <li><span class="text-gold mr-2">▹</span>Screaming Frog (SEO)</li>
-                        <li><span class="text-gold mr-2">▹</span>Matomo Analytics</li>
+                    <ul class="text-sm text-muted space-y-2">
+                        <li><span class="text-gold mr-2">▹</span>Référencement local, Mulhouse et alentours</li>
+                        <li><span class="text-gold mr-2">▹</span>Site rapide et accessible à tous</li>
+                        <li><span class="text-gold mr-2">▹</span>Statistiques de visites conformes au RGPD</li>
                     </ul>
                 </article>
-            </div>
-        </div>
-    </section>
-
-    <section id="essai" class="section-lazy relative z-10 scroll-mt-36 py-24 px-6 section-veil section-contrast">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-14 fade-in-up">
-                <span class="be-kicker">À vous de jouer</span>
-                <h2 class="text-[clamp(1.9rem,3vw,2.5rem)] mb-4">
-                    <span class="heading-display font-bold text-white">Votre marque</span>
-                    <span class="heading-accent text-goldLight"> dans l'écrin</span>
-                </h2>
-                <div class="accent-line"></div>
-                <p class="text-muted mt-6 text-sm md:text-base max-w-xl mx-auto leading-relaxed">Tapez le nom de votre entreprise, choisissez votre activité et une ambiance&nbsp;: votre futur site prend forme sous vos yeux.</p>
-            </div>
-
-            <div class="be-try fade-in-up">
-                <form class="be-try-controls glass" id="be-try-form" novalidate>
-                    <div class="be-field">
-                        <label for="be-try-name">Nom de votre entreprise</label>
-                        <input id="be-try-name" class="be-input" type="text" maxlength="26" placeholder="Ex. Maison Lumière" autocomplete="organization">
-                    </div>
-                    <div class="be-field">
-                        <label for="be-try-sector">Votre activité</label>
-                        <select id="be-try-sector" class="be-input">
-                            <option value="restaurant">Restaurant, café</option>
-                            <option value="beaute" selected>Beauté &amp; bien-être</option>
-                            <option value="sante">Santé &amp; thérapie</option>
-                            <option value="artisan">Artisan &amp; bâtiment</option>
-                            <option value="boutique">Boutique &amp; créateur</option>
-                            <option value="formation">Formation &amp; coaching</option>
-                            <option value="autre">Autre activité</option>
-                        </select>
-                    </div>
-                    <fieldset class="be-field">
-                        <legend>Ambiance</legend>
-                        <div class="be-moods">
-                            <label class="be-mood"><input type="radio" name="be-mood" value="elegante" checked><span class="be-mood-swatch" style="--a:#0B132B;--b:#D4AF37"></span><span>Élégante</span></label>
-                            <label class="be-mood"><input type="radio" name="be-mood" value="naturelle"><span class="be-mood-swatch" style="--a:#F3EFE4;--b:#5F7A61"></span><span>Naturelle</span></label>
-                            <label class="be-mood"><input type="radio" name="be-mood" value="moderne"><span class="be-mood-swatch" style="--a:#0F0F10;--b:#FF6B4A"></span><span>Moderne</span></label>
-                            <label class="be-mood"><input type="radio" name="be-mood" value="douce"><span class="be-mood-swatch" style="--a:#FBEFEF;--b:#9B4D73"></span><span>Douce</span></label>
-                        </div>
-                    </fieldset>
-                    <button type="button" id="be-try-cta" class="be-try-cta btn-gold gold-glow magnetic interactive">Je veux un site comme ça <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
-                    <p class="be-try-note">Aperçu indicatif, créé en direct dans votre navigateur. Votre vrai site sera dessiné sur mesure, avec vos photos et vos textes.</p>
-                </form>
-
-                <div class="be-try-stage">
-                    <p class="be-sr" id="be-try-live" aria-live="polite"></p>
-                    <div class="be-phone" aria-hidden="true">
-                        <span class="be-phone-notch"></span>
-                        <div class="be-phone-screen" id="be-phone-screen" data-mood="elegante">
-                            <div class="mini-nav"><span class="mini-logo" data-be-name>Maison Lumière</span><span class="mini-burger"><i></i><i></i><i></i></span></div>
-                            <div class="mini-hero">
-                                <div class="mini-art"><i class="fas fa-spa" id="be-mini-icon"></i></div>
-                                <p class="mini-kicker" id="be-mini-kicker">Beauté &amp; bien-être</p>
-                                <p class="mini-title" data-be-name>Maison Lumière</p>
-                                <p class="mini-tagline" id="be-mini-tagline">Prenez un moment rien que pour vous.</p>
-                                <span class="mini-btn" id="be-mini-cta">Prendre rendez-vous</span>
-                            </div>
-                            <div class="mini-cards" id="be-mini-cards">
-                                <div class="mini-card"><i class="fas fa-leaf"></i><span>Soins</span></div>
-                                <div class="mini-card"><i class="fas fa-tag"></i><span>Tarifs</span></div>
-                                <div class="mini-card"><i class="fas fa-calendar-check"></i><span>Réserver</span></div>
-                            </div>
-                            <div class="mini-photo"><span></span><span></span></div>
-                            <div class="mini-strip"><span><i class="fas fa-location-dot"></i> Votre ville</span><span><i class="fas fa-phone"></i> Votre numéro</span></div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -2289,203 +2211,15 @@
                     <span class="heading-accent text-goldLight"> Référence</span>
                 </h2>
                 <div class="accent-line"></div>
-                <p class="text-muted mt-6 text-sm">Direction artistique d'abord, puis développement web — deux facettes d'une même exigence.</p>
-            </div>
-
-            <div id="design" class="mb-20 md:mb-28">
-                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8 fade-in-up">
-                    <div>
-                        <span class="label-caps text-gold text-xs font-bold uppercase mb-3 block">Mission Stage</span>
-                        <h3 class="text-[clamp(1.6rem,2.5vw,2.15rem)] heading-display font-bold mb-3">
-                            <span class="text-white">Communication 360°</span>
-                            <span class="heading-accent text-goldLight font-normal"> &amp; Identité Visuelle</span>
-                        </h3>
-                        <p class="text-muted text-sm max-w-2xl leading-relaxed">
-                            Stage au sein de l'association <strong class="text-white font-medium">Santé en Commun</strong> (Mulhouse) : charte graphique style scrapbook, flyers, animation <a href="https://www.linkedin.com/company/sante-en-commun-mulhouse/" target="_blank" rel="noopener noreferrer" class="text-goldLight hover:text-gold underline underline-offset-2">LinkedIn</a> &amp; <a href="https://www.instagram.com/santeencommun68/" target="_blank" rel="noopener noreferrer" class="text-goldLight hover:text-gold underline underline-offset-2">Instagram</a>, et site <a href="https://santeencommun.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-goldLight hover:text-gold underline underline-offset-2">santeencommun.vercel.app</a>.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-10 fade-in-up" aria-label="Périmètre de la mission">
-                    <div class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10">
-                        <i class="fas fa-palette text-gold text-lg mb-2" aria-hidden="true"></i>
-                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">Charte graphique</p>
-                    </div>
-                    <div class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10">
-                        <i class="fas fa-file-image text-gold text-lg mb-2" aria-hidden="true"></i>
-                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">Flyers</p>
-                    </div>
-                    <a href="https://www.linkedin.com/company/sante-en-commun-mulhouse/" target="_blank" rel="noopener noreferrer" class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10 interactive magnetic block">
-                        <i class="fab fa-linkedin text-gold text-lg mb-2" aria-hidden="true"></i>
-                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">LinkedIn</p>
-                    </a>
-                    <a href="https://www.instagram.com/santeencommun68/" target="_blank" rel="noopener noreferrer" class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10 interactive magnetic block">
-                        <i class="fab fa-instagram text-gold text-lg mb-2" aria-hidden="true"></i>
-                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">Instagram</p>
-                    </a>
-                    <a href="https://santeencommun.vercel.app/" target="_blank" rel="noopener noreferrer" class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10 interactive magnetic block">
-                        <i class="fas fa-globe text-gold text-lg mb-2" aria-hidden="true"></i>
-                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">Site web</p>
-                    </a>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch fade-in-up">
-                    <div class="lg:col-span-8 flex flex-col">
-                        <div
-                            class="design-carousel aspect-[4/3] md:aspect-[16/10] glass rounded-2xl relative overflow-hidden group hover:shadow-goldGlow transition duration-500 flex-1"
-                            data-carousel
-                            aria-roledescription="carousel"
-                            aria-label="Galerie mission stage — Santé en Commun"
-                        >
-                            <div class="carousel-track h-full">
-                                <figure
-                                    class="carousel-slide is-active h-full"
-                                    data-label="Charte graphique"
-                                    data-category="Santé en Commun · Identité"
-                                    data-desc="Création de la charte graphique officielle de l'association : palette terracotta, jaune moutarde et vert sauge, typographies Sprite Graffiti & Poppins, univers visuel « scrapbook » déclinable sur tous les supports."
-                                    data-tags="Charte graphique,Scrapbook,Mulhouse"
-                                >
-                                    <picture><source srcset="./santeencommun/chartegraphique.webp" type="image/webp"><img src="./santeencommun/chartegraphique.png" alt="Charte graphique Santé en Commun — Mulhouse" class="w-full h-full object-contain bg-midnight/50 p-5 md:p-8" loading="lazy" decoding="async"></picture>
-                                </figure>
-                                <figure
-                                    class="carousel-slide h-full"
-                                    data-label="Flyer — Appel à bénévoles"
-                                    data-category="Santé en Commun · Print"
-                                    data-desc="Conception du flyer d'appel à bénévoles pour les permanences santé communautaire dans les quartiers de Mulhouse : mise en page éditoriale, accroche engagée et déclinaison fidèle à la charte scrapbook."
-                                    data-tags="Flyer,Print,Bénévolat"
-                                >
-                                    <picture><source srcset="./santeencommun/flyer.webp" type="image/webp"><img src="./santeencommun/flyer.png" alt="Flyer appel à bénévoles — Santé en Commun" class="w-full h-full object-contain bg-midnight/50 p-5 md:p-8" loading="lazy" decoding="async"></picture>
-                                </figure>
-                                <figure
-                                    class="carousel-slide h-full"
-                                    data-label="Réseaux sociaux"
-                                    data-category="Santé en Commun · Social media"
-                                    data-desc="Animation des comptes LinkedIn et Instagram de l'association : visuels de posts, permanences santé, sensibilisation et engagement autour de la santé communautaire à Mulhouse."
-                                    data-tags="LinkedIn,Instagram,Content"
-                                >
-                                    <picture><source srcset="./santeencommun/post.webp" type="image/webp"><img src="./santeencommun/post.png" alt="Visuel réseaux sociaux — Santé en Commun" class="w-full h-full object-contain bg-midnight/50 p-4 md:p-6" loading="lazy" decoding="async"></picture>
-                                </figure>
-                                <figure
-                                    class="carousel-slide h-full"
-                                    data-label="Site web"
-                                    data-category="Santé en Commun · Web"
-                                    data-desc="Maquette et développement du site institutionnel santeencommun.vercel.app : mission de l'asso, équipe, agenda des Cafés Santé et formulaire bénévoles — cohérent avec l'identité visuelle scrapbook."
-                                    data-tags="Site web,Responsive,ESS"
-                                >
-                                    <picture><source srcset="./santeencommun/site.webp" type="image/webp"><img src="./santeencommun/site.png" alt="Site web Santé en Commun" class="w-full h-full object-cover" loading="lazy" decoding="async"></picture>
-                                </figure>
-                            </div>
-
-                            <span class="carousel-counter absolute top-4 right-4 z-20 glass text-[11px] font-semibold tracking-widest text-gold px-3 py-1.5 rounded-full border border-white/10">01 / 04</span>
-
-                            <div class="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between gap-3 px-4 pb-4 pt-16 bg-gradient-to-t from-midnight/90 via-midnight/40 to-transparent">
-                                <button type="button" class="carousel-prev interactive magnetic w-10 h-10 rounded-full glass border border-white/20 text-gold flex items-center justify-center hover:border-gold/50 transition" aria-label="Réalisation précédente">
-                                    <i class="fas fa-chevron-left text-xs" aria-hidden="true"></i>
-                                </button>
-                                <div class="carousel-dots flex items-center gap-2" role="tablist" aria-label="Choisir une réalisation"></div>
-                                <button type="button" class="carousel-next interactive magnetic w-10 h-10 rounded-full glass border border-white/20 text-gold flex items-center justify-center hover:border-gold/50 transition" aria-label="Réalisation suivante">
-                                    <i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="carousel-thumbs flex gap-3 mt-4 overflow-x-auto pb-1" role="tablist" aria-label="Miniatures des réalisations"></div>
-                    </div>
-
-                    <div class="lg:col-span-4">
-                        <div class="glass rounded-2xl p-8 md:p-10 h-full flex flex-col justify-between border border-white/22 hover:border-gold/40 transition duration-500">
-                            <div class="mb-6 pb-6 border-b border-white/18">
-                                <span class="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.22em] uppercase text-gold/90 mb-3">
-                                    <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" aria-hidden="true"></span>
-                                    Périmètre stage
-                                </span>
-                                <p class="text-muted text-sm leading-relaxed">
-                                    Association mulhousienne de <strong class="text-white/95 font-medium">santé communautaire</strong> — Cafés Santé, permanences pluridisciplinaires et prévention dans les quartiers.
-                                </p>
-                            </div>
-                            <div>
-                                <span class="carousel-category text-[10px] font-bold tracking-[0.22em] uppercase text-gold/90 block mb-2">Santé en Commun · Identité</span>
-                                <h4 class="carousel-title text-2xl text-white heading-display font-bold mb-4">Charte graphique</h4>
-                                <p class="carousel-desc text-muted text-sm leading-relaxed mb-6">Création de la charte graphique officielle de l'association : palette terracotta, jaune moutarde et vert sauge, typographies Sprite Graffiti &amp; Poppins, univers visuel « scrapbook » déclinable sur tous les supports.</p>
-                                <div class="carousel-tags flex flex-wrap gap-2 text-xs mb-6">
-                                    <span class="px-3 py-1 border rounded-full tag-pill">Charte graphique</span>
-                                    <span class="px-3 py-1 border rounded-full tag-pill">Scrapbook</span>
-                                    <span class="px-3 py-1 border rounded-full tag-pill">Mulhouse</span>
-                                </div>
-                                <div class="flex flex-wrap gap-2 pt-5 border-t border-white/18">
-                                    <a href="https://santeencommun.vercel.app/" target="_blank" rel="noopener noreferrer" class="interactive magnetic inline-flex items-center gap-2 px-3 py-2 rounded-lg glass border border-white/22 text-xs text-goldLight hover:border-gold/50 transition">
-                                        <i class="fas fa-globe" aria-hidden="true"></i> Site
-                                    </a>
-                                    <a href="https://www.linkedin.com/company/sante-en-commun-mulhouse/" target="_blank" rel="noopener noreferrer" class="interactive magnetic inline-flex items-center gap-2 px-3 py-2 rounded-lg glass border border-white/22 text-xs text-goldLight hover:border-gold/50 transition">
-                                        <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
-                                    </a>
-                                    <a href="https://www.instagram.com/santeencommun68/" target="_blank" rel="noopener noreferrer" class="interactive magnetic inline-flex items-center gap-2 px-3 py-2 rounded-lg glass border border-white/22 text-xs text-goldLight hover:border-gold/50 transition">
-                                        <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="cartes-de-visite" class="mb-20 md:mb-28 fade-in-up scroll-mt-36">
-                <div class="text-center mb-12">
-                    <span class="label-caps text-gold text-xs font-bold uppercase mb-3 block">Print premium</span>
-                    <h3 class="text-[clamp(1.5rem,2.2vw,2rem)] heading-display font-bold mb-3">
-                        <span class="text-white">Cartes de</span>
-                        <span class="heading-accent text-goldLight"> visite</span>
-                    </h3>
-                    <div class="accent-line mb-4"></div>
-                    <p class="text-muted text-sm max-w-xl mx-auto">Survolez ou touchez une carte pour la retourner.</p>
-                </div>
-
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16 max-w-3xl mx-auto px-4">
-                    <article class="text-center">
-                        <h4 class="heading-display text-white font-semibold text-lg mb-1">Na&amp;Thérapeute</h4>
-                        <p class="text-muted text-xs mb-5">Thérapeute pour femmes — Belfort</p>
-                        <div class="business-card-scene interactive" tabindex="0" role="button" aria-label="Carte de visite Na&amp;Thérapeute — survoler ou toucher pour retourner">
-                            <div class="business-card-flip">
-                                <div class="business-card-face front">
-                                    <picture><source srcset="./carte/cartedevisite.webp" type="image/webp"><img src="./carte/cartedevisite.png" alt="Carte de visite Na&amp;Thérapeute — recto" loading="lazy" decoding="async"></picture>
-                                </div>
-                                <div class="business-card-face back">
-                                    <picture><source srcset="./carte/cartedevisite2.webp" type="image/webp"><img src="./carte/cartedevisite2.png" alt="Carte de visite Na&amp;Thérapeute — verso" loading="lazy" decoding="async"></picture>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-[10px] tracking-[0.2em] uppercase text-gold/80 mt-4">Recto · Verso</p>
-                    </article>
-
-                    <article class="text-center">
-                        <h4 class="heading-display text-white font-semibold text-lg mb-1">Sakup</h4>
-                        <p class="text-muted text-xs mb-5">Boutique e-commerce — identité print</p>
-                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Sakup — survoler ou toucher pour retourner">
-                            <div class="business-card-flip">
-                                <div class="business-card-face front">
-                                    <picture><source srcset="./carte/sakup.webp" type="image/webp"><img src="./carte/sakup.png" alt="Carte de visite Sakup — recto" loading="lazy" decoding="async"></picture>
-                                </div>
-                                <div class="business-card-face back">
-                                    <picture><source srcset="./carte/sakup2.webp" type="image/webp"><img src="./carte/sakup2.png" alt="Carte de visite Sakup — verso" loading="lazy" decoding="async"></picture>
-                                </div>
-                            </div>
-                        </div>
-                        <p class="text-[10px] tracking-[0.2em] uppercase text-gold/80 mt-4">Recto · Verso</p>
-                    </article>
-                </div>
-            </div>
-
-            <div class="flex items-center gap-4 md:gap-6 mb-14 fade-in-up" aria-hidden="true">
-                <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gold/35 to-transparent"></div>
-                <span class="text-gold text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase shrink-0">Développement Web</span>
-                <div class="h-px flex-1 bg-gradient-to-l from-transparent via-gold/35 to-transparent"></div>
+                <p class="text-muted mt-6 text-sm">Des sites pensés pour vos clients, et l'identité visuelle qui va avec.</p>
             </div>
 
             <div id="web-projets" class="text-center mb-10 fade-in-up">
                 <h3 class="text-[clamp(1.5rem,2.2vw,1.9rem)] heading-display font-bold mb-3">
-                    <span class="text-white">Travaux</span>
-                    <span class="heading-accent text-goldLight"> Web</span>
+                    <span class="text-white">Sites</span>
+                    <span class="heading-accent text-goldLight"> web</span>
                 </h3>
-                <p class="text-muted text-sm max-w-2xl mx-auto mb-8">Sites, e-commerce et apps — design, performance et SEO.</p>
+                <p class="text-muted text-sm max-w-2xl mx-auto mb-8">Sites vitrines, boutiques en ligne et plateformes : beaux, rapides et bien référencés.</p>
                 <div id="web-project-filters" class="flex flex-wrap justify-center gap-2 md:gap-3" role="tablist" aria-label="Filtrer les projets web">
                     <button type="button" class="web-filter-btn interactive magnetic is-active" data-web-filter="all" aria-pressed="true">Tous</button>
                     <button type="button" class="web-filter-btn interactive magnetic" data-web-filter="ecommerce" aria-pressed="false">E-commerce</button>
@@ -2497,8 +2231,8 @@
                 </div>
             </div>
 
-            <div class="web-projects-shell">
-                <div class="web-projects-list space-y-0">
+            <div class="web-projects-shell is-collapsed">
+                <div class="web-projects-list space-y-0" id="web-projects-list">
 
                 <article id="projet-sinacademy" class="web-project fade-in-up flex flex-col lg:flex-row gap-10 lg:gap-16 lg:items-start" data-web-categories="branding ux fullstack" data-glow="coral">
                     <div class="web-project-media w-full lg:w-1/2">
@@ -2536,7 +2270,7 @@
                                 </div>
                                 <div class="lighthouse-score">
                                     <span class="lighthouse-score-value">92</span>
-                                    <span class="lighthouse-score-label">A11y</span>
+                                    <span class="lighthouse-score-label">Access.</span>
                                 </div>
                                 <div class="lighthouse-score">
                                     <span class="lighthouse-score-value">96</span>
@@ -2585,7 +2319,7 @@
                         </div>
                     </div>
                     <div class="web-project-body w-full lg:w-1/2">
-                        <span class="web-project-label project-label text-xs uppercase mb-2 block">Stage — Santé en Commun</span>
+                        <span class="web-project-label project-label text-xs uppercase mb-2 block">Association — Santé en Commun</span>
                         <h3 class="text-2xl text-white heading-display font-bold mb-3">Site Web <span class="heading-accent text-champagne font-normal">Association ESS</span></h3>
                         <div class="lighthouse-panel lighthouse-panel--compact" aria-label="Audit Google Lighthouse — Bureau">
                             <div class="lighthouse-panel-header">
@@ -2599,7 +2333,7 @@
                                 </div>
                                 <div class="lighthouse-score">
                                     <span class="lighthouse-score-value">96</span>
-                                    <span class="lighthouse-score-label">A11y</span>
+                                    <span class="lighthouse-score-label">Access.</span>
                                 </div>
                                 <div class="lighthouse-score">
                                     <span class="lighthouse-score-value">96</span>
@@ -2664,7 +2398,7 @@
                                 </div>
                                 <div class="lighthouse-score">
                                     <span class="lighthouse-score-value">95</span>
-                                    <span class="lighthouse-score-label">A11y</span>
+                                    <span class="lighthouse-score-label">Access.</span>
                                 </div>
                                 <div class="lighthouse-score">
                                     <span class="lighthouse-score-value is-perfect">100</span>
@@ -2863,6 +2597,268 @@
 
                 </div>
             </div>
+
+            <div class="text-center mt-4 mb-20 md:mb-28" id="web-more-wrap">
+                <button type="button" id="web-more" class="be-btn-ghost interactive" aria-controls="web-projects-list" aria-expanded="false">Voir les autres projets <i class="fas fa-chevron-down ml-1" aria-hidden="true"></i></button>
+            </div>
+
+            <div class="flex items-center gap-4 md:gap-6 mb-14 fade-in-up" aria-hidden="true">
+                <div class="h-px flex-1 bg-gradient-to-r from-transparent via-gold/35 to-transparent"></div>
+                <span class="text-gold text-[10px] md:text-xs font-bold tracking-[0.3em] uppercase shrink-0">Identité visuelle &amp; print</span>
+                <div class="h-px flex-1 bg-gradient-to-l from-transparent via-gold/35 to-transparent"></div>
+            </div>
+
+            <div id="design" class="mb-20 md:mb-28">
+                <div class="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-6 mb-8 fade-in-up">
+                    <div>
+                        <span class="label-caps text-gold text-xs font-bold uppercase mb-3 block">Projet associatif</span>
+                        <h3 class="text-[clamp(1.6rem,2.5vw,2.15rem)] heading-display font-bold mb-3">
+                            <span class="text-white">Communication 360°</span>
+                            <span class="heading-accent text-goldLight font-normal"> &amp; Identité Visuelle</span>
+                        </h3>
+                        <p class="text-muted text-sm max-w-2xl leading-relaxed">
+                            Pour l'association <strong class="text-white font-medium">Santé en Commun</strong> (Mulhouse) : charte graphique style scrapbook, flyers, animation <a href="https://www.linkedin.com/company/sante-en-commun-mulhouse/" target="_blank" rel="noopener noreferrer" class="text-goldLight hover:text-gold underline underline-offset-2">LinkedIn</a> &amp; <a href="https://www.instagram.com/santeencommun68/" target="_blank" rel="noopener noreferrer" class="text-goldLight hover:text-gold underline underline-offset-2">Instagram</a>, et site <a href="https://santeencommun.vercel.app/" target="_blank" rel="noopener noreferrer" class="text-goldLight hover:text-gold underline underline-offset-2">santeencommun.vercel.app</a>.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3 mb-10 fade-in-up" aria-label="Périmètre de la mission">
+                    <div class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10">
+                        <i class="fas fa-palette text-gold text-lg mb-2" aria-hidden="true"></i>
+                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">Charte graphique</p>
+                    </div>
+                    <div class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10">
+                        <i class="fas fa-file-image text-gold text-lg mb-2" aria-hidden="true"></i>
+                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">Flyers</p>
+                    </div>
+                    <a href="https://www.linkedin.com/company/sante-en-commun-mulhouse/" target="_blank" rel="noopener noreferrer" class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10 interactive magnetic block">
+                        <i class="fab fa-linkedin text-gold text-lg mb-2" aria-hidden="true"></i>
+                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">LinkedIn</p>
+                    </a>
+                    <a href="https://www.instagram.com/santeencommun68/" target="_blank" rel="noopener noreferrer" class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10 interactive magnetic block">
+                        <i class="fab fa-instagram text-gold text-lg mb-2" aria-hidden="true"></i>
+                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">Instagram</p>
+                    </a>
+                    <a href="https://santeencommun.vercel.app/" target="_blank" rel="noopener noreferrer" class="stage-scope-card glass rounded-xl px-3 py-4 text-center border border-white/10 interactive magnetic block">
+                        <i class="fas fa-globe text-gold text-lg mb-2" aria-hidden="true"></i>
+                        <p class="text-[10px] sm:text-xs font-semibold tracking-wide uppercase text-white/90">Site web</p>
+                    </a>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch fade-in-up">
+                    <div class="lg:col-span-8 flex flex-col">
+                        <div
+                            class="design-carousel aspect-[4/3] md:aspect-[16/10] glass rounded-2xl relative overflow-hidden group hover:shadow-goldGlow transition duration-500 flex-1"
+                            data-carousel
+                            aria-roledescription="carousel"
+                            aria-label="Galerie mission stage — Santé en Commun"
+                        >
+                            <div class="carousel-track h-full">
+                                <figure
+                                    class="carousel-slide is-active h-full"
+                                    data-label="Charte graphique"
+                                    data-category="Santé en Commun · Identité"
+                                    data-desc="Création de la charte graphique officielle de l'association : palette terracotta, jaune moutarde et vert sauge, typographies Sprite Graffiti & Poppins, univers visuel « scrapbook » déclinable sur tous les supports."
+                                    data-tags="Charte graphique,Scrapbook,Mulhouse"
+                                >
+                                    <picture><source srcset="./santeencommun/chartegraphique.webp" type="image/webp"><img src="./santeencommun/chartegraphique.png" alt="Charte graphique Santé en Commun — Mulhouse" class="w-full h-full object-contain bg-midnight/50 p-5 md:p-8" loading="lazy" decoding="async"></picture>
+                                </figure>
+                                <figure
+                                    class="carousel-slide h-full"
+                                    data-label="Flyer — Appel à bénévoles"
+                                    data-category="Santé en Commun · Print"
+                                    data-desc="Conception du flyer d'appel à bénévoles pour les permanences santé communautaire dans les quartiers de Mulhouse : mise en page éditoriale, accroche engagée et déclinaison fidèle à la charte scrapbook."
+                                    data-tags="Flyer,Print,Bénévolat"
+                                >
+                                    <picture><source srcset="./santeencommun/flyer.webp" type="image/webp"><img src="./santeencommun/flyer.png" alt="Flyer appel à bénévoles — Santé en Commun" class="w-full h-full object-contain bg-midnight/50 p-5 md:p-8" loading="lazy" decoding="async"></picture>
+                                </figure>
+                                <figure
+                                    class="carousel-slide h-full"
+                                    data-label="Réseaux sociaux"
+                                    data-category="Santé en Commun · Social media"
+                                    data-desc="Animation des comptes LinkedIn et Instagram de l'association : visuels de posts, permanences santé, sensibilisation et engagement autour de la santé communautaire à Mulhouse."
+                                    data-tags="LinkedIn,Instagram,Content"
+                                >
+                                    <picture><source srcset="./santeencommun/post.webp" type="image/webp"><img src="./santeencommun/post.png" alt="Visuel réseaux sociaux — Santé en Commun" class="w-full h-full object-contain bg-midnight/50 p-4 md:p-6" loading="lazy" decoding="async"></picture>
+                                </figure>
+                                <figure
+                                    class="carousel-slide h-full"
+                                    data-label="Site web"
+                                    data-category="Santé en Commun · Web"
+                                    data-desc="Maquette et développement du site institutionnel santeencommun.vercel.app : mission de l'asso, équipe, agenda des Cafés Santé et formulaire bénévoles — cohérent avec l'identité visuelle scrapbook."
+                                    data-tags="Site web,Responsive,ESS"
+                                >
+                                    <picture><source srcset="./santeencommun/site.webp" type="image/webp"><img src="./santeencommun/site.png" alt="Site web Santé en Commun" class="w-full h-full object-cover" loading="lazy" decoding="async"></picture>
+                                </figure>
+                            </div>
+
+                            <span class="carousel-counter absolute top-4 right-4 z-20 glass text-[11px] font-semibold tracking-widest text-gold px-3 py-1.5 rounded-full border border-white/10">01 / 04</span>
+
+                            <div class="absolute inset-x-0 bottom-0 z-20 flex items-center justify-between gap-3 px-4 pb-4 pt-16 bg-gradient-to-t from-midnight/90 via-midnight/40 to-transparent">
+                                <button type="button" class="carousel-prev interactive magnetic w-10 h-10 rounded-full glass border border-white/20 text-gold flex items-center justify-center hover:border-gold/50 transition" aria-label="Réalisation précédente">
+                                    <i class="fas fa-chevron-left text-xs" aria-hidden="true"></i>
+                                </button>
+                                <div class="carousel-dots flex items-center gap-2" role="tablist" aria-label="Choisir une réalisation"></div>
+                                <button type="button" class="carousel-next interactive magnetic w-10 h-10 rounded-full glass border border-white/20 text-gold flex items-center justify-center hover:border-gold/50 transition" aria-label="Réalisation suivante">
+                                    <i class="fas fa-chevron-right text-xs" aria-hidden="true"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="carousel-thumbs flex gap-3 mt-4 overflow-x-auto pb-1" role="tablist" aria-label="Miniatures des réalisations"></div>
+                    </div>
+
+                    <div class="lg:col-span-4">
+                        <div class="glass rounded-2xl p-8 md:p-10 h-full flex flex-col justify-between border border-white/22 hover:border-gold/40 transition duration-500">
+                            <div class="mb-6 pb-6 border-b border-white/18">
+                                <span class="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.22em] uppercase text-gold/90 mb-3">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-gold animate-pulse" aria-hidden="true"></span>
+                                    Périmètre du projet
+                                </span>
+                                <p class="text-muted text-sm leading-relaxed">
+                                    Association mulhousienne de <strong class="text-white/95 font-medium">santé communautaire</strong> — Cafés Santé, permanences pluridisciplinaires et prévention dans les quartiers.
+                                </p>
+                            </div>
+                            <div>
+                                <span class="carousel-category text-[10px] font-bold tracking-[0.22em] uppercase text-gold/90 block mb-2">Santé en Commun · Identité</span>
+                                <h4 class="carousel-title text-2xl text-white heading-display font-bold mb-4">Charte graphique</h4>
+                                <p class="carousel-desc text-muted text-sm leading-relaxed mb-6">Création de la charte graphique officielle de l'association : palette terracotta, jaune moutarde et vert sauge, typographies Sprite Graffiti &amp; Poppins, univers visuel « scrapbook » déclinable sur tous les supports.</p>
+                                <div class="carousel-tags flex flex-wrap gap-2 text-xs mb-6">
+                                    <span class="px-3 py-1 border rounded-full tag-pill">Charte graphique</span>
+                                    <span class="px-3 py-1 border rounded-full tag-pill">Scrapbook</span>
+                                    <span class="px-3 py-1 border rounded-full tag-pill">Mulhouse</span>
+                                </div>
+                                <div class="flex flex-wrap gap-2 pt-5 border-t border-white/18">
+                                    <a href="https://santeencommun.vercel.app/" target="_blank" rel="noopener noreferrer" class="interactive magnetic inline-flex items-center gap-2 px-3 py-2 rounded-lg glass border border-white/22 text-xs text-goldLight hover:border-gold/50 transition">
+                                        <i class="fas fa-globe" aria-hidden="true"></i> Site
+                                    </a>
+                                    <a href="https://www.linkedin.com/company/sante-en-commun-mulhouse/" target="_blank" rel="noopener noreferrer" class="interactive magnetic inline-flex items-center gap-2 px-3 py-2 rounded-lg glass border border-white/22 text-xs text-goldLight hover:border-gold/50 transition">
+                                        <i class="fab fa-linkedin" aria-hidden="true"></i> LinkedIn
+                                    </a>
+                                    <a href="https://www.instagram.com/santeencommun68/" target="_blank" rel="noopener noreferrer" class="interactive magnetic inline-flex items-center gap-2 px-3 py-2 rounded-lg glass border border-white/22 text-xs text-goldLight hover:border-gold/50 transition">
+                                        <i class="fab fa-instagram" aria-hidden="true"></i> Instagram
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="cartes-de-visite" class="mb-20 md:mb-28 fade-in-up scroll-mt-36">
+                <div class="text-center mb-12">
+                    <span class="label-caps text-gold text-xs font-bold uppercase mb-3 block">Print premium</span>
+                    <h3 class="text-[clamp(1.5rem,2.2vw,2rem)] heading-display font-bold mb-3">
+                        <span class="text-white">Cartes de</span>
+                        <span class="heading-accent text-goldLight"> visite</span>
+                    </h3>
+                    <div class="accent-line mb-4"></div>
+                    <p class="text-muted text-sm max-w-xl mx-auto">Survolez ou touchez une carte pour la retourner.</p>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16 max-w-3xl mx-auto px-4">
+                    <article class="text-center">
+                        <h4 class="heading-display text-white font-semibold text-lg mb-1">Na&amp;Thérapeute</h4>
+                        <p class="text-muted text-xs mb-5">Thérapeute pour femmes — Belfort</p>
+                        <div class="business-card-scene interactive" tabindex="0" role="button" aria-label="Carte de visite Na&amp;Thérapeute — survoler ou toucher pour retourner">
+                            <div class="business-card-flip">
+                                <div class="business-card-face front">
+                                    <picture><source srcset="./carte/cartedevisite.webp" type="image/webp"><img src="./carte/cartedevisite.png" alt="Carte de visite Na&amp;Thérapeute — recto" loading="lazy" decoding="async"></picture>
+                                </div>
+                                <div class="business-card-face back">
+                                    <picture><source srcset="./carte/cartedevisite2.webp" type="image/webp"><img src="./carte/cartedevisite2.png" alt="Carte de visite Na&amp;Thérapeute — verso" loading="lazy" decoding="async"></picture>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] tracking-[0.2em] uppercase text-gold/80 mt-4">Recto · Verso</p>
+                    </article>
+
+                    <article class="text-center">
+                        <h4 class="heading-display text-white font-semibold text-lg mb-1">Sakup</h4>
+                        <p class="text-muted text-xs mb-5">Boutique e-commerce — identité print</p>
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Sakup — survoler ou toucher pour retourner">
+                            <div class="business-card-flip">
+                                <div class="business-card-face front">
+                                    <picture><source srcset="./carte/sakup.webp" type="image/webp"><img src="./carte/sakup.png" alt="Carte de visite Sakup — recto" loading="lazy" decoding="async"></picture>
+                                </div>
+                                <div class="business-card-face back">
+                                    <picture><source srcset="./carte/sakup2.webp" type="image/webp"><img src="./carte/sakup2.png" alt="Carte de visite Sakup — verso" loading="lazy" decoding="async"></picture>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] tracking-[0.2em] uppercase text-gold/80 mt-4">Recto · Verso</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="essai" class="section-lazy relative z-10 scroll-mt-36 py-24 px-6 section-veil section-contrast">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-14 fade-in-up">
+                <span class="be-kicker">À vous de jouer</span>
+                <h2 class="text-[clamp(1.9rem,3vw,2.5rem)] mb-4">
+                    <span class="heading-display font-bold text-white">Votre marque</span>
+                    <span class="heading-accent text-goldLight"> dans l'écrin</span>
+                </h2>
+                <div class="accent-line"></div>
+                <p class="text-muted mt-6 text-sm md:text-base max-w-xl mx-auto leading-relaxed">Tapez le nom de votre entreprise, choisissez votre activité et une ambiance&nbsp;: votre futur site prend forme sous vos yeux.</p>
+            </div>
+
+            <div class="be-try fade-in-up">
+                <form class="be-try-controls glass" id="be-try-form" novalidate>
+                    <div class="be-field">
+                        <label for="be-try-name">Nom de votre entreprise</label>
+                        <input id="be-try-name" class="be-input" type="text" maxlength="26" placeholder="Ex. Maison Lumière" autocomplete="organization">
+                    </div>
+                    <div class="be-field">
+                        <label for="be-try-sector">Votre activité</label>
+                        <select id="be-try-sector" class="be-input">
+                            <option value="restaurant">Restaurant, café</option>
+                            <option value="beaute" selected>Beauté &amp; bien-être</option>
+                            <option value="sante">Santé &amp; thérapie</option>
+                            <option value="artisan">Artisan &amp; bâtiment</option>
+                            <option value="boutique">Boutique &amp; créateur</option>
+                            <option value="formation">Formation &amp; coaching</option>
+                            <option value="autre">Autre activité</option>
+                        </select>
+                    </div>
+                    <fieldset class="be-field">
+                        <legend>Ambiance</legend>
+                        <div class="be-moods">
+                            <label class="be-mood"><input type="radio" name="be-mood" value="elegante" checked><span class="be-mood-swatch" style="--a:#0B132B;--b:#D4AF37"></span><span>Élégante</span></label>
+                            <label class="be-mood"><input type="radio" name="be-mood" value="naturelle"><span class="be-mood-swatch" style="--a:#F3EFE4;--b:#5F7A61"></span><span>Naturelle</span></label>
+                            <label class="be-mood"><input type="radio" name="be-mood" value="moderne"><span class="be-mood-swatch" style="--a:#0F0F10;--b:#FF6B4A"></span><span>Moderne</span></label>
+                            <label class="be-mood"><input type="radio" name="be-mood" value="douce"><span class="be-mood-swatch" style="--a:#FBEFEF;--b:#9B4D73"></span><span>Douce</span></label>
+                        </div>
+                    </fieldset>
+                    <button type="button" id="be-try-cta" class="be-try-cta btn-gold gold-glow magnetic interactive">Je veux un site comme ça <i class="fas fa-arrow-right" aria-hidden="true"></i></button>
+                    <p class="be-try-note">Aperçu indicatif, créé en direct dans votre navigateur. Votre vrai site sera dessiné sur mesure, avec vos photos et vos textes.</p>
+                </form>
+
+                <div class="be-try-stage">
+                    <p class="be-sr" id="be-try-live" aria-live="polite"></p>
+                    <div class="be-phone" aria-hidden="true">
+                        <span class="be-phone-notch"></span>
+                        <div class="be-phone-screen" id="be-phone-screen" data-mood="elegante">
+                            <div class="mini-nav"><span class="mini-logo" data-be-name>Maison Lumière</span><span class="mini-burger"><i></i><i></i><i></i></span></div>
+                            <div class="mini-hero">
+                                <div class="mini-art"><i class="fas fa-spa" id="be-mini-icon"></i></div>
+                                <p class="mini-kicker" id="be-mini-kicker">Beauté &amp; bien-être</p>
+                                <p class="mini-title" data-be-name>Maison Lumière</p>
+                                <p class="mini-tagline" id="be-mini-tagline">Prenez un moment rien que pour vous.</p>
+                                <span class="mini-btn" id="be-mini-cta">Prendre rendez-vous</span>
+                            </div>
+                            <div class="mini-cards" id="be-mini-cards">
+                                <div class="mini-card"><i class="fas fa-leaf"></i><span>Soins</span></div>
+                                <div class="mini-card"><i class="fas fa-tag"></i><span>Tarifs</span></div>
+                                <div class="mini-card"><i class="fas fa-calendar-check"></i><span>Réserver</span></div>
+                            </div>
+                            <div class="mini-photo"><span></span><span></span></div>
+                            <div class="mini-strip"><span><i class="fas fa-location-dot"></i> Votre ville</span><span><i class="fas fa-phone"></i> Votre numéro</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -2921,11 +2917,6 @@
                     </div>
                 </div>
                 <p class="be-ba-caption">Exemple fictif, créé pour la démonstration.</p>
-                <ul class="be-ba-points">
-                    <li class="glass"><i class="fas fa-eye" aria-hidden="true"></i><span><strong>Compris en 5 secondes</strong>Un message clair et une seule action principale.</span></li>
-                    <li class="glass"><i class="fas fa-mobile-alt" aria-hidden="true"></i><span><strong>Pensé pour le téléphone</strong>Lisible et rapide, partout, sans zoomer.</span></li>
-                    <li class="glass"><i class="fas fa-hand-pointer" aria-hidden="true"></i><span><strong>Un vrai bouton d'action</strong>Commander, réserver ou appeler en un geste.</span></li>
-                </ul>
             </div>
         </div>
     </section>
@@ -3045,56 +3036,6 @@
             </ol>
             <div class="text-center mt-12 fade-in-up">
                 <a href="#contact" class="magnetic interactive gold-glow inline-block px-8 py-4 btn-gold text-midnight font-semibold rounded-lg tracking-wide transition">Commencer par un échange</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="diagnostic" class="section-lazy relative z-10 scroll-mt-36 py-24 px-6 section-veil section-contrast">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12 fade-in-up">
-                <span class="be-kicker">Diagnostic express</span>
-                <h2 class="text-[clamp(1.9rem,3vw,2.5rem)] mb-4">
-                    <span class="heading-display font-bold text-white">Votre site est-il</span>
-                    <span class="heading-accent text-goldLight"> un bel écran&nbsp;?</span>
-                </h2>
-                <div class="accent-line"></div>
-                <p class="text-muted mt-6 text-sm md:text-base max-w-xl mx-auto leading-relaxed">5 questions, 1 minute. Un score et des conseils concrets, sans inscription.</p>
-            </div>
-
-            <div class="be-quiz glass fade-in-up" id="be-quiz">
-                <div id="be-quiz-play">
-                    <div class="be-quiz-top"><span id="be-quiz-count">Question 1 sur 5</span><span id="be-quiz-score-hint" aria-hidden="true"></span></div>
-                    <div class="be-quiz-progress" aria-hidden="true"><span id="be-quiz-bar"></span></div>
-                    <div class="be-quiz-step" id="be-quiz-step">
-                        <h3 class="be-quiz-q" id="be-quiz-q" tabindex="-1">Votre site s'affiche-t-il parfaitement sur téléphone&nbsp;?</h3>
-                        <p class="be-quiz-hint" id="be-quiz-hint">Ouvrez-le sur votre portable : tout est lisible, sans zoomer&nbsp;?</p>
-                        <div class="be-quiz-answers">
-                            <button type="button" class="be-quiz-answer interactive" data-points="2">Oui</button>
-                            <button type="button" class="be-quiz-answer interactive" data-points="1">À moitié</button>
-                            <button type="button" class="be-quiz-answer interactive" data-points="0">Non</button>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="be-quiz-result" id="be-quiz-result" hidden>
-                    <div class="be-score" aria-hidden="true">
-                        <svg viewBox="0 0 100 100">
-                            <defs><linearGradient id="be-score-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6E3A1"/><stop offset="1" stop-color="#D4AF37"/></linearGradient></defs>
-                            <circle class="be-score-track" cx="50" cy="50" r="46"/>
-                            <circle class="be-score-bar" id="be-score-bar" cx="50" cy="50" r="46"/>
-                        </svg>
-                        <span class="be-score-val"><span><span id="be-score-num">0</span><small>/10</small></span></span>
-                    </div>
-                    <h3 class="be-quiz-title" id="be-quiz-title" tabindex="-1"></h3>
-                    <p class="be-quiz-text" id="be-quiz-text"></p>
-                    <ul class="be-quiz-tips" id="be-quiz-tips"></ul>
-                    <div class="be-quiz-actions">
-                        <button type="button" id="be-quiz-cta" class="be-try-cta btn-gold gold-glow interactive" style="width:auto">Recevoir un avis personnalisé</button>
-                        <button type="button" id="be-quiz-restart" class="be-btn-ghost interactive">Recommencer</button>
-                    </div>
-                </div>
-
-                <p class="be-quiz-alt">Pas encore de site&nbsp;? <a href="#essai" class="interactive">Imaginez-le dans l'écrin</a>.</p>
             </div>
         </div>
     </section>
@@ -3327,21 +3268,6 @@
         } else {
             magneticEls.forEach((el) => {
                 el.style.transform = "";
-            });
-        }
-
-        const dot = document.getElementById("cursor-dot");
-        if (window.matchMedia("(pointer: fine)").matches) {
-            document.body.classList.add("custom-cursor");
-            window.addEventListener("mousemove", (event) => {
-                dot.style.opacity = "1";
-                dot.style.left = `${event.clientX}px`;
-                dot.style.top = `${event.clientY}px`;
-            });
-            const interactive = document.querySelectorAll(".interactive, a, button, img");
-            interactive.forEach((el) => {
-                el.addEventListener("mouseenter", () => dot.classList.add("active"));
-                el.addEventListener("mouseleave", () => dot.classList.remove("active"));
             });
         }
 
@@ -3682,7 +3608,7 @@
             var root = document.documentElement;
             var intro = document.getElementById("be-intro");
             if (!intro || !root.classList.contains("be-intro")) return;
-            try { sessionStorage.setItem("be-intro", "1"); } catch (e) {}
+            try { localStorage.setItem("be-intro", "1"); } catch (e) {}
             var skip = document.getElementById("be-intro-skip");
             var done = false;
             var timers = [];
@@ -3702,7 +3628,7 @@
             }
             intro.addEventListener("click", function () { finish(true); });
             document.addEventListener("keydown", function (e) { if (e.key === "Escape" || e.key === "Enter" || e.key === " ") finish(true); }, { once: true });
-            timers.push(setTimeout(function () { finish(false); }, 1450));
+            timers.push(setTimeout(function () { finish(false); }, 1100));
         })();
 
         (function beTry() {
@@ -3812,6 +3738,32 @@
             if (msg) msg.addEventListener("input", function () { msg.dataset.prefilled = "0"; });
         })();
 
+        (function beWebMore() {
+            var shell = document.querySelector(".web-projects-shell");
+            var btn = document.getElementById("web-more");
+            var wrap = document.getElementById("web-more-wrap");
+            if (!shell || !btn) return;
+            function open() {
+                shell.classList.remove("is-collapsed");
+                btn.setAttribute("aria-expanded", "true");
+                if (wrap) wrap.hidden = true;
+            }
+            btn.addEventListener("click", open);
+            var filters = document.getElementById("web-project-filters");
+            if (filters) filters.addEventListener("click", function (e) { if (e.target.closest("[data-web-filter]")) open(); });
+        })();
+
+        (function bePrefillFromUrl() {
+            try {
+                var q = new URLSearchParams(location.search);
+                var msg = q.get("demande");
+                if (!msg) return;
+                var type = q.get("type") || "";
+                history.replaceState(null, "", location.pathname + "#contact");
+                setTimeout(function () { window.__bePrefill({ type: type, message: msg }); }, 300);
+            } catch (e) {}
+        })();
+
         (function beBeforeAfter() {
             var wrap = document.getElementById("be-ba");
             var range = document.getElementById("be-ba-range");
@@ -3853,109 +3805,6 @@
             io.observe(wrap);
         })();
 
-        (function beQuiz() {
-            var root = document.getElementById("be-quiz");
-            if (!root) return;
-            var Q = [
-                { q: "Votre site s'affiche-t-il parfaitement sur téléphone ?", hint: "Ouvrez-le sur votre portable : tout est lisible, sans zoomer ?", short: "affichage sur téléphone", tip: "La majorité des visites se font sur téléphone. Un site pensé d'abord pour le mobile évite de perdre ces visiteurs." },
-                { q: "S'ouvre-t-il en moins de 3 secondes ?", hint: "Testez-le en 4G, sans le wifi.", short: "vitesse", tip: "Chaque seconde d'attente fait partir des visiteurs. Des images allégées et un code soigné changent tout." },
-                { q: "Comprend-on en 5 secondes ce que vous proposez ?", hint: "Montrez la page d'accueil à un proche pendant 5 secondes, puis demandez-lui ce que vous faites.", short: "clarté du message", tip: "Une phrase claire en haut de page et un seul bouton principal guident le visiteur." },
-                { q: "Vous trouve-t-on sur Google avec « votre activité + votre ville » ?", hint: "Par exemple « fleuriste Mulhouse ». Êtes-vous en première page ?", short: "visibilité sur Google", tip: "Un référencement local soigné (titres, fiche Google, contenus) vous rend visible près de chez vous." },
-                { q: "Peut-on vous contacter ou réserver en un clic, depuis n'importe quelle page ?", hint: "Bouton d'appel, de réservation ou de contact toujours visible ?", short: "prise de contact", tip: "Un bouton d'action toujours visible transforme les visites en demandes." }
-            ];
-            var play = document.getElementById("be-quiz-play");
-            var step = document.getElementById("be-quiz-step");
-            var qEl = document.getElementById("be-quiz-q");
-            var hintEl = document.getElementById("be-quiz-hint");
-            var count = document.getElementById("be-quiz-count");
-            var bar = document.getElementById("be-quiz-bar");
-            var result = document.getElementById("be-quiz-result");
-            var answers = [];
-            var idx = 0;
-
-            function show(focus) {
-                var item = Q[idx];
-                qEl.textContent = item.q;
-                hintEl.textContent = item.hint;
-                count.textContent = "Question " + (idx + 1) + " sur " + Q.length;
-                bar.style.width = ((idx + 1) / Q.length * 100) + "%";
-                step.classList.remove("be-quiz-step");
-                void step.offsetWidth;
-                step.classList.add("be-quiz-step");
-                if (focus) qEl.focus({ preventScroll: true });
-            }
-
-            function finish() {
-                var score = answers.reduce(function (a, b) { return a + b; }, 0);
-                play.hidden = true;
-                result.hidden = false;
-                var title, text;
-                if (score >= 9) { title = "Déjà un bel écran"; text = "Votre site a de solides bases. Quelques détails peuvent encore le faire briller."; }
-                else if (score >= 5) { title = "Un écrin à polir"; text = "Le potentiel est là, mais certains points freinent vos visiteurs."; }
-                else { title = "Votre marque mérite mieux"; text = "Votre site vous fait sans doute perdre des clients. Bonne nouvelle : tout se corrige."; }
-                document.getElementById("be-quiz-title").textContent = title;
-                document.getElementById("be-quiz-text").textContent = text;
-                var tips = document.getElementById("be-quiz-tips");
-                tips.innerHTML = "";
-                Q.forEach(function (item, i) {
-                    if (answers[i] === 2) return;
-                    var li = document.createElement("li");
-                    var ic = document.createElement("i");
-                    ic.className = "fas fa-gem";
-                    ic.setAttribute("aria-hidden", "true");
-                    var span = document.createElement("span");
-                    var strong = document.createElement("strong");
-                    strong.textContent = item.short.charAt(0).toUpperCase() + item.short.slice(1) + " : ";
-                    span.appendChild(strong);
-                    span.appendChild(document.createTextNode(item.tip));
-                    li.appendChild(ic);
-                    li.appendChild(span);
-                    tips.appendChild(li);
-                });
-                tips.hidden = !tips.children.length;
-                var num = document.getElementById("be-score-num");
-                var ring = document.getElementById("be-score-bar");
-                var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-                ring.style.strokeDashoffset = 289;
-                requestAnimationFrame(function () { requestAnimationFrame(function () { ring.style.strokeDashoffset = 289 - 289 * score / 10; }); });
-                if (reduce) { num.textContent = score; }
-                else {
-                    var n = 0;
-                    num.textContent = "0";
-                    var iv = setInterval(function () { n++; if (n > score) { clearInterval(iv); return; } num.textContent = n; }, 90);
-                }
-                var t = document.getElementById("be-quiz-title");
-                t.focus({ preventScroll: true });
-                root.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
-                root.dataset.score = score;
-            }
-
-            root.addEventListener("click", function (e) {
-                var b = e.target.closest(".be-quiz-answer");
-                if (!b) return;
-                answers[idx] = parseInt(b.getAttribute("data-points"), 10) || 0;
-                if (idx < Q.length - 1) { idx++; show(true); } else { finish(); }
-            });
-
-            document.getElementById("be-quiz-restart").addEventListener("click", function () {
-                answers = []; idx = 0;
-                result.hidden = true; play.hidden = false;
-                show(true);
-            });
-
-            document.getElementById("be-quiz-cta").addEventListener("click", function () {
-                var weak = [];
-                Q.forEach(function (item, i) { if (answers[i] !== 2) weak.push(item.short); });
-                window.__bePrefill({
-                    type: "Refonte d'un site existant",
-                    message: "Bonjour Sakina,\nJ'ai fait le diagnostic sur votre site : " + (root.dataset.score || 0) + "/10." +
-                        (weak.length ? "\nPoints à améliorer : " + weak.join(", ") + "." : "") +
-                        "\nPouvez-vous regarder mon site ? Son adresse : "
-                });
-            });
-
-            show(false);
-        })();
     </script>
 </body>
 </html>

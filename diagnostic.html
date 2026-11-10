@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagnostic express : votre site est-il un bel écran ? — Bel Écran</title>
+    <meta name="description" content="5 questions, 1 minute : testez votre site web (mobile, vitesse, clarté, Google, contact) et recevez un score et des conseils concrets. Gratuit, sans inscription.">
+    <meta name="theme-color" content="#0B132B">
+    <link rel="canonical" href="https://belecran.vercel.app/diagnostic.html">
+    <meta property="og:title" content="Votre site est-il un bel écran ? Diagnostic express">
+    <meta property="og:description" content="5 questions, 1 minute. Un score et des conseils concrets, sans inscription.">
+    <meta property="og:image" content="https://belecran.vercel.app/og-image.jpg">
+    <meta property="og:type" content="website">
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Syne:wght@700&family=Pinyon+Script&family=Manrope:wght@300&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root { --night: #0B132B; --gold: #D4AF37; --gold-light: #E8C77A; --ivory: #F4EFE6; --muted: #B9BED0; }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { min-height: 100vh; background: radial-gradient(60% 45% at 50% 0%, rgba(212, 175, 55, 0.10), transparent 70%), radial-gradient(120% 80% at 50% 10%, #16224A 0%, #0B132B 50%, #070C1D 100%) fixed; color: var(--muted); font-family: "DM Sans", system-ui, sans-serif; line-height: 1.6; }
+        a { color: var(--gold-light); }
+        button { font: inherit; }
+        ul { list-style: none; }
+        [hidden] { display: none !important; }
+        header, main, footer { max-width: 900px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: max(20px, env(safe-area-inset-right, 0px)); }
+        header { padding-block: 26px 8px; display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; }
+        .brand { text-decoration: none; display: inline-flex; align-items: baseline; gap: 0.4em; white-space: nowrap; }
+        .brand .bel { font-family: "Pinyon Script", cursive; color: var(--gold-light); font-size: 2.2rem; line-height: 0.9; }
+        .brand .ecran { font-family: "Manrope", sans-serif; font-weight: 300; letter-spacing: 0.28em; text-transform: uppercase; color: #fff; font-size: 1.05rem; }
+        .back { font-size: 0.9rem; }
+        main { padding-block: 40px 64px; }
+        .intro { text-align: center; margin-bottom: 2.5rem; }
+        .be-kicker { display: inline-block; font-size: 0.7rem; font-weight: 600; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold); margin-bottom: 0.9rem; }
+        h1 { font-family: "Syne", sans-serif; font-weight: 700; color: #fff; font-size: clamp(1.9rem, 5vw, 2.7rem); line-height: 1.15; margin-bottom: 1rem; }
+        h1 em { font-family: "DM Sans", sans-serif; font-weight: 400; color: var(--gold-light); }
+        .intro p { max-width: 34rem; margin: 0 auto; }
+        .glass { background: rgba(28, 37, 65, 0.55); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35); }
+        .btn-gold { background: linear-gradient(135deg, #E8C77A, #D4AF37 55%, #C99A2E); }
+        .be-try-cta { display: inline-flex; justify-content: center; align-items: center; gap: 0.6rem; border: 0; border-radius: 0.6rem; padding: 0.95rem 1.2rem; font: 600 0.95rem "DM Sans", sans-serif; color: #0B132B; cursor: pointer; }
+        /* ---------- Diagnostic ---------- */
+        .be-quiz { max-width: 44rem; margin: 0 auto; border-radius: 1.25rem; padding: clamp(1.4rem, 4vw, 2.6rem); }
+        .be-quiz-top { display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 0.7rem; font-size: 0.75rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(212, 175, 55, 0.95); font-weight: 600; }
+        .be-quiz-progress { height: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.12); overflow: hidden; margin-bottom: 1.8rem; }
+        .be-quiz-progress span { display: block; height: 100%; width: 20%; background: linear-gradient(90deg, #D4AF37, #F6E3A1); border-radius: 999px; transition: width 0.45s ease; }
+        .be-quiz-q { font-family: "Syne", sans-serif; font-weight: 700; color: #fff; font-size: clamp(1.25rem, 2.6vw, 1.6rem); line-height: 1.25; margin-bottom: 0.6rem; outline: none; }
+        .be-quiz-hint { font-size: 0.9rem; color: rgba(243, 245, 250, 0.75); margin-bottom: 1.6rem; line-height: 1.5; }
+        .be-quiz-answers { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0.7rem; }
+        @media (min-width: 560px) { .be-quiz-answers { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+        .be-quiz-answer { border: 1px solid rgba(255, 255, 255, 0.2); background: rgba(11, 19, 43, 0.45); color: #F4EFE6; border-radius: 0.75rem; padding: 0.95rem 1rem; font: 600 0.95rem "DM Sans", sans-serif; cursor: pointer; transition: border-color 0.2s, background 0.2s, transform 0.15s; }
+        .be-quiz-answer:hover, .be-quiz-answer:focus-visible { border-color: var(--gold); background: rgba(212, 175, 55, 0.14); outline: none; }
+        .be-quiz-answer:active { transform: scale(0.98); }
+        .be-quiz-step { animation: be-quiz-in 0.45s ease; }
+        @keyframes be-quiz-in { from { opacity: 0; transform: translateX(14px); } to { opacity: 1; transform: none; } }
+        .be-quiz-result { text-align: center; }
+        .be-score { position: relative; width: 9.5rem; height: 9.5rem; margin: 0 auto 1.4rem; }
+        .be-score svg { width: 100%; height: 100%; transform: rotate(-90deg); }
+        .be-score circle { fill: none; stroke-width: 8; }
+        .be-score .be-score-track { stroke: rgba(255, 255, 255, 0.12); }
+        .be-score .be-score-bar { stroke: url(#be-score-grad); stroke-linecap: round; stroke-dasharray: 289; stroke-dashoffset: 289; transition: stroke-dashoffset 1.1s cubic-bezier(.22, .61, .36, 1); }
+        .be-score-val { position: absolute; inset: 0; display: grid; place-items: center; font: 700 2.2rem "Syne", sans-serif; color: #fff; }
+        .be-score-val small { font-size: 0.9rem; color: rgba(244, 239, 230, 0.6); font-weight: 500; }
+        .be-quiz-title { font-family: "Syne", sans-serif; font-weight: 700; font-size: clamp(1.4rem, 3vw, 1.85rem); color: #fff; margin-bottom: 0.5rem; outline: none; }
+        .be-quiz-text { color: rgba(243, 245, 250, 0.85); margin-bottom: 1.5rem; line-height: 1.55; }
+        .be-quiz-tips { text-align: left; display: grid; gap: 0.7rem; margin-bottom: 1.8rem; }
+        .be-quiz-tips li { display: flex; gap: 0.75rem; padding: 0.9rem 1rem; border-radius: 0.8rem; background: rgba(11, 19, 43, 0.45); border: 1px solid rgba(255, 255, 255, 0.1); font-size: 0.9rem; line-height: 1.5; color: rgba(243, 245, 250, 0.88); }
+        .be-quiz-tips li i { color: var(--gold); margin-top: 0.2rem; }
+        .be-quiz-tips strong { color: #fff; }
+        .be-quiz-actions { display: flex; flex-direction: column; gap: 0.7rem; align-items: stretch; }
+        @media (min-width: 560px) { .be-quiz-actions { flex-direction: row; justify-content: center; } }
+        .be-btn-ghost { border: 1px solid rgba(212, 175, 55, 0.6); color: #F3E5AB; background: transparent; border-radius: 0.6rem; padding: 0.9rem 1.3rem; font: 600 0.9rem "DM Sans", sans-serif; cursor: pointer; }
+        .be-btn-ghost:hover { background: rgba(212, 175, 55, 0.14); }
+        .be-quiz-alt { text-align: center; margin-top: 1.4rem; font-size: 0.85rem; color: rgba(243, 245, 250, 0.7); }
+        .be-quiz-alt a { color: #F3E5AB; text-decoration: underline; text-underline-offset: 3px; }
+
+        footer { padding-block: 24px 40px; border-top: 1px solid rgba(212, 175, 55, 0.18); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.12em; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; justify-content: space-between; }
+        @media (prefers-reduced-motion: reduce) {
+            .be-quiz-step { animation: none; }
+            .be-score .be-score-bar, .be-quiz-progress span { transition: none; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a class="brand" href="./" aria-label="Bel Écran, retour à l'accueil"><span class="bel">Bel</span><span class="ecran">Écran</span></a>
+        <a class="back" href="./">← Retour au site</a>
+    </header>
+
+    <main>
+        <div class="intro">
+            <span class="be-kicker">Diagnostic express</span>
+            <h1>Votre site est-il <em>un bel écran&nbsp;?</em></h1>
+            <p>5 questions, 1 minute. Un score et des conseils concrets, sans inscription.</p>
+        </div>
+
+            <div class="be-quiz glass" id="be-quiz">
+            <div id="be-quiz-play">
+                <div class="be-quiz-top"><span id="be-quiz-count">Question 1 sur 5</span><span id="be-quiz-score-hint" aria-hidden="true"></span></div>
+                <div class="be-quiz-progress" aria-hidden="true"><span id="be-quiz-bar"></span></div>
+                <div class="be-quiz-step" id="be-quiz-step">
+                    <h3 class="be-quiz-q" id="be-quiz-q" tabindex="-1">Votre site s'affiche-t-il parfaitement sur téléphone&nbsp;?</h3>
+                    <p class="be-quiz-hint" id="be-quiz-hint">Ouvrez-le sur votre portable : tout est lisible, sans zoomer&nbsp;?</p>
+                    <div class="be-quiz-answers">
+                        <button type="button" class="be-quiz-answer" data-points="2">Oui</button>
+                        <button type="button" class="be-quiz-answer" data-points="1">À moitié</button>
+                        <button type="button" class="be-quiz-answer" data-points="0">Non</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="be-quiz-result" id="be-quiz-result" hidden>
+                <div class="be-score" aria-hidden="true">
+                    <svg viewBox="0 0 100 100">
+                        <defs><linearGradient id="be-score-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#F6E3A1"/><stop offset="1" stop-color="#D4AF37"/></linearGradient></defs>
+                        <circle class="be-score-track" cx="50" cy="50" r="46"/>
+                        <circle class="be-score-bar" id="be-score-bar" cx="50" cy="50" r="46"/>
+                    </svg>
+                    <span class="be-score-val"><span><span id="be-score-num">0</span><small>/10</small></span></span>
+                </div>
+                <h3 class="be-quiz-title" id="be-quiz-title" tabindex="-1"></h3>
+                <p class="be-quiz-text" id="be-quiz-text"></p>
+                <ul class="be-quiz-tips" id="be-quiz-tips"></ul>
+                <div class="be-quiz-actions">
+                    <button type="button" id="be-quiz-cta" class="be-try-cta btn-gold gold-glow" style="width:auto">Recevoir un avis personnalisé</button>
+                    <button type="button" id="be-quiz-restart" class="be-btn-ghost">Recommencer</button>
+                </div>
+            </div>
+
+            <p class="be-quiz-alt">Pas encore de site&nbsp;? <a href="./#essai">Imaginez-le dans l'écrin</a>.</p>
+        </div>
+
+    </main>
+
+    <footer><span>Bel Écran © 2026 — Sakina Zariouh, EI</span><a href="./mentions-legales.html">Mentions légales</a></footer>
+
+    <script>
+        (function beQuiz() {
+            var root = document.getElementById("be-quiz");
+            if (!root) return;
+            var Q = [
+                { q: "Votre site s'affiche-t-il parfaitement sur téléphone ?", hint: "Ouvrez-le sur votre portable : tout est lisible, sans zoomer ?", short: "affichage sur téléphone", tip: "La majorité des visites se font sur téléphone. Un site pensé d'abord pour le mobile évite de perdre ces visiteurs." },
+                { q: "S'ouvre-t-il en moins de 3 secondes ?", hint: "Testez-le en 4G, sans le wifi.", short: "vitesse", tip: "Chaque seconde d'attente fait partir des visiteurs. Des images allégées et un code soigné changent tout." },
+                { q: "Comprend-on en 5 secondes ce que vous proposez ?", hint: "Montrez la page d'accueil à un proche pendant 5 secondes, puis demandez-lui ce que vous faites.", short: "clarté du message", tip: "Une phrase claire en haut de page et un seul bouton principal guident le visiteur." },
+                { q: "Vous trouve-t-on sur Google avec « votre activité + votre ville » ?", hint: "Par exemple « fleuriste Mulhouse ». Êtes-vous en première page ?", short: "visibilité sur Google", tip: "Un référencement local soigné (titres, fiche Google, contenus) vous rend visible près de chez vous." },
+                { q: "Peut-on vous contacter ou réserver en un clic, depuis n'importe quelle page ?", hint: "Bouton d'appel, de réservation ou de contact toujours visible ?", short: "prise de contact", tip: "Un bouton d'action toujours visible transforme les visites en demandes." }
+            ];
+            var play = document.getElementById("be-quiz-play");
+            var step = document.getElementById("be-quiz-step");
+            var qEl = document.getElementById("be-quiz-q");
+            var hintEl = document.getElementById("be-quiz-hint");
+            var count = document.getElementById("be-quiz-count");
+            var bar = document.getElementById("be-quiz-bar");
+            var result = document.getElementById("be-quiz-result");
+            var answers = [];
+            var idx = 0;
+
+            function show(focus) {
+                var item = Q[idx];
+                qEl.textContent = item.q;
+                hintEl.textContent = item.hint;
+                count.textContent = "Question " + (idx + 1) + " sur " + Q.length;
+                bar.style.width = ((idx + 1) / Q.length * 100) + "%";
+                step.classList.remove("be-quiz-step");
+                void step.offsetWidth;
+                step.classList.add("be-quiz-step");
+                if (focus) qEl.focus({ preventScroll: true });
+            }
+
+            function finish() {
+                var score = answers.reduce(function (a, b) { return a + b; }, 0);
+                play.hidden = true;
+                result.hidden = false;
+                var title, text;
+                if (score >= 9) { title = "Déjà un bel écran"; text = "Votre site a de solides bases. Quelques détails peuvent encore le faire briller."; }
+                else if (score >= 5) { title = "Un écrin à polir"; text = "Le potentiel est là, mais certains points freinent vos visiteurs."; }
+                else { title = "Votre marque mérite mieux"; text = "Votre site vous fait sans doute perdre des clients. Bonne nouvelle : tout se corrige."; }
+                document.getElementById("be-quiz-title").textContent = title;
+                document.getElementById("be-quiz-text").textContent = text;
+                var tips = document.getElementById("be-quiz-tips");
+                tips.innerHTML = "";
+                Q.forEach(function (item, i) {
+                    if (answers[i] === 2) return;
+                    var li = document.createElement("li");
+                    var ic = document.createElement("i");
+                    ic.className = "fas fa-gem";
+                    ic.setAttribute("aria-hidden", "true");
+                    var span = document.createElement("span");
+                    var strong = document.createElement("strong");
+                    strong.textContent = item.short.charAt(0).toUpperCase() + item.short.slice(1) + " : ";
+                    span.appendChild(strong);
+                    span.appendChild(document.createTextNode(item.tip));
+                    li.appendChild(ic);
+                    li.appendChild(span);
+                    tips.appendChild(li);
+                });
+                tips.hidden = !tips.children.length;
+                var num = document.getElementById("be-score-num");
+                var ring = document.getElementById("be-score-bar");
+                var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+                ring.style.strokeDashoffset = 289;
+                requestAnimationFrame(function () { requestAnimationFrame(function () { ring.style.strokeDashoffset = 289 - 289 * score / 10; }); });
+                if (reduce) { num.textContent = score; }
+                else {
+                    var n = 0;
+                    num.textContent = "0";
+                    var iv = setInterval(function () { n++; if (n > score) { clearInterval(iv); return; } num.textContent = n; }, 90);
+                }
+                var t = document.getElementById("be-quiz-title");
+                t.focus({ preventScroll: true });
+                root.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
+                root.dataset.score = score;
+            }
+
+            root.addEventListener("click", function (e) {
+                var b = e.target.closest(".be-quiz-answer");
+                if (!b) return;
+                answers[idx] = parseInt(b.getAttribute("data-points"), 10) || 0;
+                if (idx < Q.length - 1) { idx++; show(true); } else { finish(); }
+            });
+
+            document.getElementById("be-quiz-restart").addEventListener("click", function () {
+                answers = []; idx = 0;
+                result.hidden = true; play.hidden = false;
+                show(true);
+            });
+
+            document.getElementById("be-quiz-cta").addEventListener("click", function () {
+                var weak = [];
+                Q.forEach(function (item, i) { if (answers[i] !== 2) weak.push(item.short); });
+                var msg = "Bonjour Sakina,\nJ'ai fait le diagnostic sur votre site : " + (root.dataset.score || 0) + "/10." +
+                    (weak.length ? "\nPoints à améliorer : " + weak.join(", ") + "." : "") +
+                    "\nPouvez-vous regarder mon site ? Son adresse : ";
+                location.href = "./?type=" + encodeURIComponent("Refonte d'un site existant") + "&demande=" + encodeURIComponent(msg);
+            });
+
+            show(false);
+        })();
+    </script>
+</body>
+</html>
