@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bel Écran — Création de sites web, UX/UI &amp; SEO | Mulhouse et partout en France</title>
-    <meta name="description" content="Bel Écran : création de sites web sur mesure, design UX/UI, développement et SEO. L'écrin de votre marque, depuis Mulhouse, pour des clients partout en France.">
+    <meta name="description" content="Bel Écran : création de sites web sur mesure, design UX/UI, développement et SEO. L'écrin de votre marque, depuis l'Alsace, pour des clients partout en France.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Sakina Zariouh — Bel Écran">
     <meta name="theme-color" content="#0B132B">
@@ -85,7 +85,7 @@
                 "@type": "WebSite",
                 "@id": "#website",
                 "name": "Bel Écran",
-                "description": "Bel Écran — création de sites web, UX/UI et SEO, basée à Mulhouse, pour des clients partout en France.",
+                "description": "Bel Écran — création de sites web, UX/UI et SEO, basée en Alsace, pour des clients partout en France.",
                 "publisher": { "@id": "#organization" },
                 "inLanguage": "fr"
             },
@@ -2874,7 +2874,7 @@
                 <p class="text-muted mt-6 text-sm md:text-base max-w-xl mx-auto leading-relaxed">Quatre étapes claires. Et vous voyez votre site avant qu'il soit construit.</p>
             </div>
             <ol class="be-steps">
-                <li class="be-step glass fade-in-up"><span class="be-step-num">01</span><h3>Échange</h3><p>On parle de votre activité, de vos clients et de vos objectifs, en visio, ou en personne si vous êtes près de Mulhouse.</p></li>
+                <li class="be-step glass fade-in-up"><span class="be-step-num">01</span><h3>Échange</h3><p>On parle de votre activité, de vos clients et de vos objectifs, en visio, ou en personne si vous êtes en Alsace.</p></li>
                 <li class="be-step glass fade-in-up [transition-delay:100ms]"><span class="be-step-num">02</span><h3>Maquette</h3><p>Je vous montre le design de votre site avant de le développer. Vous validez, on ajuste ensemble.</p></li>
                 <li class="be-step glass fade-in-up [transition-delay:200ms]"><span class="be-step-num">03</span><h3>Création</h3><p>Développement, textes, référencement et tests sur téléphone, tablette et ordinateur.</p></li>
                 <li class="be-step glass fade-in-up [transition-delay:300ms]"><span class="be-step-num">04</span><h3>Mise en ligne</h3><p>Votre site est publié, je vous montre comment le faire vivre, et je reste disponible ensuite.</p></li>
@@ -2896,13 +2896,13 @@
             </div>
             <div class="grid grid-cols-1 md:grid-cols-5 gap-10 items-start">
                 <div class="md:col-span-3 fade-in-up space-y-5 text-muted leading-relaxed">
-                    <p class="text-white text-lg">Je m'appelle Sakina Zariouh. Basée à Mulhouse, je crée des sites web sur mesure pour des clients partout en France.</p>
+                    <p class="text-white text-lg">Je m'appelle Sakina. Basée en Alsace, je crée des sites web sur mesure pour des clients partout en France.</p>
                     <p>Du premier croquis à la mise en ligne, je m'occupe du design, du développement et du référencement. Je soigne autant l'esthétique que la vitesse et l'accessibilité, parce qu'un beau site doit aussi être rapide et facile à utiliser.</p>
                     <p>J'accompagne aussi des organismes de formation dans la conception de contenus pédagogiques et de plateformes d'apprentissage en ligne.</p>
                     <p class="text-goldLight">Ma conviction : votre site est l'écrin de votre marque. Il doit la mettre en valeur, et donner envie d'aller plus loin.</p>
                 </div>
                 <ul class="md:col-span-2 fade-in-up glass rounded-2xl p-8 space-y-6 shadow-soft">
-                    <li class="flex gap-4"><i class="fas fa-location-dot text-gold mt-1"></i><span><strong class="text-white block">Partout en France</strong><span class="text-muted text-sm">En visio, ou sur place autour de Mulhouse.</span></span></li>
+                    <li class="flex gap-4"><i class="fas fa-location-dot text-gold mt-1"></i><span><strong class="text-white block">Partout en France</strong><span class="text-muted text-sm">En visio, ou sur place en Alsace.</span></span></li>
                     <li class="flex gap-4"><i class="fas fa-gem text-gold mt-1"></i><span><strong class="text-white block">Design, code &amp; SEO</strong><span class="text-muted text-sm">Un seul interlocuteur, de l'idée au site en ligne.</span></span></li>
                     <li class="flex gap-4"><i class="fas fa-graduation-cap text-gold mt-1"></i><span><strong class="text-white block">Sites &amp; e-learning</strong><span class="text-muted text-sm">Sites vitrines, e-commerce et plateformes de formation.</span></span></li>
                 </ul>
@@ -3613,7 +3613,7 @@
             }
             if (type && opts.type) {
                 for (var i = 0; i < type.options.length; i++) {
-                    if (type.options[i].value === opts.type) { type.selectedIndex = i; break; }
+                    if (type.options[i].value === opts.type) { type.selectedIndex = i; type.dispatchEvent(new Event("change")); break; }
                 }
             }
             if (contact) contact.scrollIntoView({ behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth", block: "start" });
@@ -3622,6 +3622,34 @@
         (function () {
             var msg = document.getElementById("contact-details");
             if (msg) msg.addEventListener("input", function () { msg.dataset.prefilled = "0"; });
+        })();
+
+        (function beBudget() {
+            var type = document.getElementById("contact-type");
+            var budget = document.getElementById("contact-budget");
+            if (!type || !budget) return;
+            var RANGES = {
+                "Identité Visuelle": ["Moins de 300 €", "300 à 600 €", "600 à 1 200 €", "Plus de 1 200 €"],
+                "Site One-Page": ["Moins de 500 €", "500 à 900 €", "900 à 1 500 €", "Plus de 1 500 €"],
+                "Site Corporate": ["Moins de 1 000 €", "1 000 à 2 000 €", "2 000 à 3 500 €", "Plus de 3 500 €"],
+                "Site E-commerce": ["Moins de 2 000 €", "2 000 à 4 000 €", "4 000 à 7 000 €", "Plus de 7 000 €"],
+                "Refonte d'un site existant": ["Moins de 800 €", "800 à 1 500 €", "1 500 à 3 000 €", "Plus de 3 000 €"],
+                "Autre": ["Moins de 500 €", "500 à 1 000 €", "1 000 à 2 500 €", "Plus de 2 500 €"]
+            };
+            function update() {
+                var list = RANGES[type.value] || RANGES["Autre"];
+                var prev = budget.value;
+                budget.innerHTML = "";
+                ["Je ne sais pas encore"].concat(list).forEach(function (label) {
+                    var o = document.createElement("option");
+                    o.value = label;
+                    o.textContent = label;
+                    budget.appendChild(o);
+                });
+                budget.value = list.indexOf(prev) !== -1 ? prev : "Je ne sais pas encore";
+            }
+            type.addEventListener("change", update);
+            update();
         })();
 
         (function beWebMore() {
