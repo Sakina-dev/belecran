@@ -2,4 +2,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://belecran.vercel.app/sitemap.xml
+Sitemap: https://www.belecran.fr/sitemap.xml
