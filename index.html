@@ -39,6 +39,78 @@
         })();
     </script>
     <script type="application/ld+json">
+{
+ "@context": "https://schema.org",
+ "@type": "FAQPage",
+ "mainEntity": [
+  {
+   "@type": "Question",
+   "name": "Combien de temps faut-il pour créer mon site ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Pour un site vitrine, comptez 1 à 2 semaines, dès que j'ai vos textes et vos photos. Un e-commerce ou une plateforme de formation demande un peu plus : je vous donne un planning précis avec le devis."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Comment se passe le paiement ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "En 3 fois : un premier versement à la signature du devis, un deuxième quand vous validez la maquette, et le solde à la mise en ligne."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Combien de modifications sont incluses ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "3 séries de retouches sont incluses avant la mise en ligne. Vous voyez votre site prendre forme et vous ajustez jusqu'à ce qu'il vous ressemble."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Qui s'occupe de l'hébergement et du nom de domaine ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Je m'occupe de tout : achat du nom de domaine, hébergement, adresse sécurisée (https) et mise en ligne. Vous n'avez rien de technique à gérer."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Est-ce que je pourrai modifier mon site moi-même ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Vous n'avez pas à vous en soucier : vous m'envoyez vos changements (texte, photo, horaires) et je les fais pour vous. Votre site reste propre et rapide."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Et après la mise en ligne ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Le premier mois de petites retouches est offert. Ensuite, vous choisissez : un forfait de suivi mensuel, ou des modifications sur devis quand vous en avez besoin."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Mon site sera-t-il visible sur Google ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Oui, le référencement de base est inclus : titres et descriptions de chaque page, site rapide et adapté au mobile, et Google Search Console configurée pour que Google trouve votre site."
+   }
+  },
+  {
+   "@type": "Question",
+   "name": "Vous travaillez à distance ?",
+   "acceptedAnswer": {
+    "@type": "Answer",
+    "text": "Oui, 100 % à distance, partout en France : visio, téléphone et e-mail. Basée en Alsace, je travaille avec des clients de toutes les régions."
+   }
+  }
+ ]
+}
+    </script>
+    <script type="application/ld+json">
     {
         "@context": "https://schema.org",
         "@graph": [
@@ -1160,6 +1232,15 @@
         }
         @media (prefers-reduced-motion: reduce) { .cards-track { scroll-behavior: auto; } .cards-slide { transition: none; } }
 
+        .faq-item summary { list-style: none; }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-q { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 1.15rem 1.5rem; cursor: pointer; color: #fff; font-weight: 600; font-size: 0.95rem; }
+        .faq-q i { color: #D4AF37; font-size: 0.8rem; transition: transform 0.35s ease; flex-shrink: 0; }
+        .faq-item[open] .faq-q i { transform: rotate(45deg); }
+        .faq-q:focus-visible { outline: 2px solid #D4AF37; outline-offset: -2px; border-radius: 1rem; }
+        .faq-a { padding: 0 1.5rem 1.25rem; margin: 0; }
+        .faq-item[open] { border-color: rgba(212, 175, 55, 0.35); }
+
         .project-link-badge {
             position: absolute;
             inset-inline: 0;
@@ -2093,6 +2174,7 @@
                 <a href="#essai" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">L'écrin</a>
                 <a href="#methode" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">Méthode</a>
                 <a href="#a-propos" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">À propos</a>
+                <a href="#faq" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">FAQ</a>
                 <a href="./diagnostic.html" class="hover:text-goldLight transition magnetic interactive whitespace-nowrap">Diagnostic</a>
             </div>
             <a href="#contact" class="magnetic interactive gold-glow shrink-0 whitespace-nowrap rounded-full btn-gold px-5 py-2 text-sm font-semibold text-midnight transition">
@@ -2108,6 +2190,7 @@
                 <li><a href="#methode" class="nav-drawer-link interactive">Méthode</a></li>
                 <li><a href="./diagnostic.html" class="nav-drawer-link interactive">Diagnostic</a></li>
                 <li><a href="#a-propos" class="nav-drawer-link interactive">À propos</a></li>
+                <li><a href="#faq" class="nav-drawer-link interactive">FAQ</a></li>
                 <li><a href="#contact" class="nav-drawer-link interactive">Contact</a></li>
             </ul>
             <div class="nav-drawer-footer">
@@ -2923,11 +3006,58 @@
                     <p class="text-goldLight">Ma conviction : votre site est l'écrin de votre marque. Il doit la mettre en valeur, et donner envie d'aller plus loin.</p>
                 </div>
                 <ul class="md:col-span-2 fade-in-up glass rounded-2xl p-8 space-y-6 shadow-soft">
-                    <li class="flex gap-4"><i class="fas fa-location-dot text-gold mt-1"></i><span><strong class="text-white block">Partout en France</strong><span class="text-muted text-sm">En visio, ou sur place en Alsace.</span></span></li>
+                    <li class="flex gap-4"><i class="fas fa-location-dot text-gold mt-1"></i><span><strong class="text-white block">Partout en France</strong><span class="text-muted text-sm">100 % à distance : visio, téléphone et e-mail.</span></span></li>
                     <li class="flex gap-4"><i class="fas fa-gem text-gold mt-1"></i><span><strong class="text-white block">Design, code &amp; SEO</strong><span class="text-muted text-sm">Un seul interlocuteur, de l'idée au site en ligne.</span></span></li>
                     <li class="flex gap-4"><i class="fas fa-graduation-cap text-gold mt-1"></i><span><strong class="text-white block">Sites &amp; e-learning</strong><span class="text-muted text-sm">Sites vitrines, e-commerce et plateformes de formation.</span></span></li>
                 </ul>
             </div>
+        </div>
+    </section>
+
+    <section id="faq" class="section-lazy relative z-10 scroll-mt-36 py-24 px-6 section-veil section-contrast">
+        <div class="max-w-3xl mx-auto">
+            <div class="text-center mb-12 fade-in-up">
+                <h2 class="text-[clamp(1.9rem,3vw,2.5rem)] mb-4">
+                    <span class="heading-display font-bold text-white">Questions</span>
+                    <span class="heading-accent text-goldLight"> fréquentes</span>
+                </h2>
+                <div class="accent-line"></div>
+            </div>
+            <div class="faq-list fade-in-up space-y-3">
+                <details class="faq-item glass rounded-2xl border border-white/10">
+                    <summary class="faq-q interactive"><span>Combien de temps faut-il pour créer mon site ?</span><i class="fas fa-plus" aria-hidden="true"></i></summary>
+                    <p class="faq-a text-muted text-sm leading-relaxed">Pour un site vitrine, comptez 1 à 2 semaines, dès que j'ai vos textes et vos photos. Un e-commerce ou une plateforme de formation demande un peu plus : je vous donne un planning précis avec le devis.</p>
+                </details>
+                <details class="faq-item glass rounded-2xl border border-white/10">
+                    <summary class="faq-q interactive"><span>Comment se passe le paiement ?</span><i class="fas fa-plus" aria-hidden="true"></i></summary>
+                    <p class="faq-a text-muted text-sm leading-relaxed">En 3 fois : un premier versement à la signature du devis, un deuxième quand vous validez la maquette, et le solde à la mise en ligne.</p>
+                </details>
+                <details class="faq-item glass rounded-2xl border border-white/10">
+                    <summary class="faq-q interactive"><span>Combien de modifications sont incluses ?</span><i class="fas fa-plus" aria-hidden="true"></i></summary>
+                    <p class="faq-a text-muted text-sm leading-relaxed">3 séries de retouches sont incluses avant la mise en ligne. Vous voyez votre site prendre forme et vous ajustez jusqu'à ce qu'il vous ressemble.</p>
+                </details>
+                <details class="faq-item glass rounded-2xl border border-white/10">
+                    <summary class="faq-q interactive"><span>Qui s'occupe de l'hébergement et du nom de domaine ?</span><i class="fas fa-plus" aria-hidden="true"></i></summary>
+                    <p class="faq-a text-muted text-sm leading-relaxed">Je m'occupe de tout : achat du nom de domaine, hébergement, adresse sécurisée (https) et mise en ligne. Vous n'avez rien de technique à gérer.</p>
+                </details>
+                <details class="faq-item glass rounded-2xl border border-white/10">
+                    <summary class="faq-q interactive"><span>Est-ce que je pourrai modifier mon site moi-même ?</span><i class="fas fa-plus" aria-hidden="true"></i></summary>
+                    <p class="faq-a text-muted text-sm leading-relaxed">Vous n'avez pas à vous en soucier : vous m'envoyez vos changements (texte, photo, horaires) et je les fais pour vous. Votre site reste propre et rapide.</p>
+                </details>
+                <details class="faq-item glass rounded-2xl border border-white/10">
+                    <summary class="faq-q interactive"><span>Et après la mise en ligne ?</span><i class="fas fa-plus" aria-hidden="true"></i></summary>
+                    <p class="faq-a text-muted text-sm leading-relaxed">Le premier mois de petites retouches est offert. Ensuite, vous choisissez : un forfait de suivi mensuel, ou des modifications sur devis quand vous en avez besoin.</p>
+                </details>
+                <details class="faq-item glass rounded-2xl border border-white/10">
+                    <summary class="faq-q interactive"><span>Mon site sera-t-il visible sur Google ?</span><i class="fas fa-plus" aria-hidden="true"></i></summary>
+                    <p class="faq-a text-muted text-sm leading-relaxed">Oui, le référencement de base est inclus : titres et descriptions de chaque page, site rapide et adapté au mobile, et Google Search Console configurée pour que Google trouve votre site.</p>
+                </details>
+                <details class="faq-item glass rounded-2xl border border-white/10">
+                    <summary class="faq-q interactive"><span>Vous travaillez à distance ?</span><i class="fas fa-plus" aria-hidden="true"></i></summary>
+                    <p class="faq-a text-muted text-sm leading-relaxed">Oui, 100 % à distance, partout en France : visio, téléphone et e-mail. Basée en Alsace, je travaille avec des clients de toutes les régions.</p>
+                </details>
+            </div>
+            <p class="text-center text-muted text-sm mt-10">Une autre question ? <a href="#contact" class="text-goldLight hover:text-gold underline underline-offset-2">Écrivez-moi</a>, je réponds sous 24h.</p>
         </div>
     </section>
 
