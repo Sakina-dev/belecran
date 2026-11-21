@@ -1140,6 +1140,26 @@
             }
         }
 
+        .cards-carousel { position: relative; max-width: 72rem; margin: 0 auto; }
+        .cards-track { display: flex; gap: 2.5rem; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding: 1.5rem calc(50% - 11rem) 1rem; margin: 0; list-style: none; scrollbar-width: none; }
+        .cards-track::-webkit-scrollbar { display: none; }
+        .cards-slide { flex: 0 0 22rem; scroll-snap-align: center; text-align: center; opacity: 0.45; transform: scale(0.9); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .cards-slide.is-active { opacity: 1; transform: scale(1); }
+        .cards-slide .business-card-scene { max-width: 22rem; }
+        .cards-nav { position: absolute; top: 7.5rem; z-index: 5; width: 2.75rem; height: 2.75rem; border-radius: 999px; display: flex; align-items: center; justify-content: center; color: #D4AF37; background: rgba(11, 19, 43, 0.75); border: 1px solid rgba(255, 255, 255, 0.2); backdrop-filter: blur(8px); transition: border-color 0.3s ease; }
+        .cards-nav:hover, .cards-nav:focus-visible { border-color: rgba(212, 175, 55, 0.6); }
+        .cards-prev { left: 0.5rem; }
+        .cards-next { right: 0.5rem; }
+        .cards-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1.25rem; }
+        .cards-dot { width: 0.5rem; height: 0.5rem; border-radius: 999px; background: rgba(255, 255, 255, 0.25); border: 0; padding: 0; transition: width 0.3s ease, background-color 0.3s ease; }
+        .cards-dot.is-active { width: 1.5rem; background: #D4AF37; }
+        @media (max-width: 640px) {
+            .cards-track { gap: 1.25rem; padding-inline: calc(50% - 8.5rem); }
+            .cards-slide, .cards-slide .business-card-scene { flex-basis: 17rem; max-width: 17rem; }
+            .cards-nav { display: none; }
+        }
+        @media (prefers-reduced-motion: reduce) { .cards-track { scroll-behavior: auto; } .cards-slide { transition: none; } }
+
         .project-link-badge {
             position: absolute;
             inset-inline: 0;
@@ -2379,7 +2399,7 @@
                                 </div>
                             </div>
                         </div>
-                        <p class="text-muted text-sm mb-4 leading-relaxed">Branding 360° pour Nadia (Belfort) — logo, <a href="#cartes-de-visite" class="text-goldLight hover:text-gold underline underline-offset-2">carte de visite</a> et site <a href="https://naettherapeute.com/" target="_blank" rel="noopener noreferrer" class="text-goldLight hover:text-gold underline underline-offset-2">naettherapeute.com</a>.</p>
+                        <p class="text-muted text-sm mb-4 leading-relaxed">Branding 360° pour Nadia (Belfort) — logo, carte de visite et site <a href="https://naettherapeute.com/" target="_blank" rel="noopener noreferrer" class="text-goldLight hover:text-gold underline underline-offset-2">naettherapeute.com</a>.</p>
                         <div class="flex flex-wrap gap-3 text-xs">
                             <span class="px-3 py-1 border rounded-full tag-pill">Branding</span>
                             <span class="px-3 py-1 border rounded-full tag-pill">Lighthouse</span>
@@ -2422,7 +2442,7 @@
                                 <p>LCP 1,7 s · Perf. 96</p>
                             </div>
                         </div>
-                        <p class="text-muted text-sm mb-4 leading-relaxed">E-commerce optimisé — audit SEO, Core Web Vitals et <a href="#cartes-de-visite" class="text-goldLight hover:text-gold underline underline-offset-2">identité print</a>.</p>
+                        <p class="text-muted text-sm mb-4 leading-relaxed">E-commerce optimisé — audit SEO, Core Web Vitals et identité print.</p>
                         <div class="flex flex-wrap gap-3 text-xs">
                             <span class="px-3 py-1 border rounded-full tag-pill">PrestaShop</span>
                             <span class="px-3 py-1 border rounded-full tag-pill">Lighthouse</span>
@@ -2614,48 +2634,121 @@
             </div>
 
             <div id="cartes-de-visite" class="mb-20 md:mb-28 fade-in-up scroll-mt-36">
-                <div class="text-center mb-12">
+                <div class="text-center mb-10">
                     <span class="label-caps text-gold text-xs font-bold uppercase mb-3 block">Print premium</span>
                     <h3 class="text-[clamp(1.5rem,2.2vw,2rem)] heading-display font-bold mb-3">
                         <span class="text-white">Cartes de</span>
                         <span class="heading-accent text-goldLight"> visite</span>
                     </h3>
                     <div class="accent-line mb-4"></div>
-                    <p class="text-muted text-sm max-w-xl mx-auto">Survolez ou touchez une carte pour la retourner.</p>
+                    <p class="text-muted text-sm max-w-xl mx-auto">Ma carte et des concepts pour des marques imaginaires, pour vous montrer chaque univers possible. Survolez ou touchez une carte pour la retourner.</p>
                 </div>
 
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-12 lg:gap-16 max-w-3xl mx-auto px-4">
-                    <article class="text-center">
-                        <h4 class="heading-display text-white font-semibold text-lg mb-1">Na&amp;Thérapeute</h4>
-                        <p class="text-muted text-xs mb-5">Thérapeute pour femmes — Belfort</p>
-                        <div class="business-card-scene interactive" tabindex="0" role="button" aria-label="Carte de visite Na&amp;Thérapeute — survoler ou toucher pour retourner">
+                <div class="cards-carousel" data-cards-carousel aria-roledescription="carousel" aria-label="Cartes de visite">
+                    <button type="button" class="cards-nav cards-prev interactive magnetic" aria-label="Carte précédente"><i class="fas fa-chevron-left" aria-hidden="true"></i></button>
+                    <ul class="cards-track" tabindex="-1">
+                    <li class="cards-slide" role="group" aria-roledescription="slide" aria-label="1 sur 9 : Bel Écran">
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Bel Écran : survoler ou toucher pour retourner">
                             <div class="business-card-flip">
-                                <div class="business-card-face front">
-                                    <picture><source srcset="./carte/cartedevisite.webp" type="image/webp"><img src="./carte/cartedevisite.png" alt="Carte de visite Na&amp;Thérapeute — recto" loading="lazy" decoding="async"></picture>
-                                </div>
-                                <div class="business-card-face back">
-                                    <picture><source srcset="./carte/cartedevisite2.webp" type="image/webp"><img src="./carte/cartedevisite2.png" alt="Carte de visite Na&amp;Thérapeute — verso" loading="lazy" decoding="async"></picture>
-                                </div>
+                                <div class="business-card-face front"><img src="./carte/belecran-recto.webp" alt="Carte de visite Bel Écran, recto" loading="lazy" decoding="async" width="963" height="624"></div>
+                                <div class="business-card-face back"><img src="./carte/belecran-verso.webp" alt="Carte de visite Bel Écran, verso" loading="lazy" decoding="async" width="963" height="624"></div>
                             </div>
                         </div>
-                        <p class="text-[10px] tracking-[0.2em] uppercase text-gold/80 mt-4">Recto · Verso</p>
-                    </article>
-
-                    <article class="text-center">
-                        <h4 class="heading-display text-white font-semibold text-lg mb-1">Sakup</h4>
-                        <p class="text-muted text-xs mb-5">Boutique e-commerce — identité print</p>
-                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Sakup — survoler ou toucher pour retourner">
+                        <p class="text-[10px] tracking-[0.22em] uppercase text-gold/80 mt-5">Ma carte</p>
+                        <h4 class="heading-display text-white font-semibold text-lg mt-1">Bel Écran</h4>
+                        <p class="text-muted text-xs mt-1">Ma propre carte · bleu nuit et or</p>
+                    </li>
+                    <li class="cards-slide" role="group" aria-roledescription="slide" aria-label="2 sur 9 : Maison Orée">
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Maison Orée : survoler ou toucher pour retourner">
                             <div class="business-card-flip">
-                                <div class="business-card-face front">
-                                    <picture><source srcset="./carte/sakup.webp" type="image/webp"><img src="./carte/sakup.png" alt="Carte de visite Sakup — recto" loading="lazy" decoding="async"></picture>
-                                </div>
-                                <div class="business-card-face back">
-                                    <picture><source srcset="./carte/sakup2.webp" type="image/webp"><img src="./carte/sakup2.png" alt="Carte de visite Sakup — verso" loading="lazy" decoding="async"></picture>
-                                </div>
+                                <div class="business-card-face front"><img src="./carte/concept-moderne-recto.webp" alt="Carte de visite Maison Orée, recto" loading="lazy" decoding="async" width="963" height="624"></div>
+                                <div class="business-card-face back"><img src="./carte/concept-moderne-verso.webp" alt="Carte de visite Maison Orée, verso" loading="lazy" decoding="async" width="963" height="624"></div>
                             </div>
                         </div>
-                        <p class="text-[10px] tracking-[0.2em] uppercase text-gold/80 mt-4">Recto · Verso</p>
-                    </article>
+                        <p class="text-[10px] tracking-[0.22em] uppercase text-gold/80 mt-5">Concept</p>
+                        <h4 class="heading-display text-white font-semibold text-lg mt-1">Maison Orée</h4>
+                        <p class="text-muted text-xs mt-1">Moderne · parfumerie</p>
+                    </li>
+                    <li class="cards-slide" role="group" aria-roledescription="slide" aria-label="3 sur 9 : Nodal Labs">
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Nodal Labs : survoler ou toucher pour retourner">
+                            <div class="business-card-flip">
+                                <div class="business-card-face front"><img src="./carte/concept-techno-recto.webp" alt="Carte de visite Nodal Labs, recto" loading="lazy" decoding="async" width="963" height="624"></div>
+                                <div class="business-card-face back"><img src="./carte/concept-techno-verso.webp" alt="Carte de visite Nodal Labs, verso" loading="lazy" decoding="async" width="963" height="624"></div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] tracking-[0.22em] uppercase text-gold/80 mt-5">Concept</p>
+                        <h4 class="heading-display text-white font-semibold text-lg mt-1">Nodal Labs</h4>
+                        <p class="text-muted text-xs mt-1">Techno · startup IA</p>
+                    </li>
+                    <li class="cards-slide" role="group" aria-roledescription="slide" aria-label="4 sur 9 : Dar al-Nour">
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Dar al-Nour : survoler ou toucher pour retourner">
+                            <div class="business-card-flip">
+                                <div class="business-card-face front"><img src="./carte/concept-arabe-recto.webp" alt="Carte de visite Dar al-Nour, recto" loading="lazy" decoding="async" width="963" height="624"></div>
+                                <div class="business-card-face back"><img src="./carte/concept-arabe-verso.webp" alt="Carte de visite Dar al-Nour, verso" loading="lazy" decoding="async" width="963" height="624"></div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] tracking-[0.22em] uppercase text-gold/80 mt-5">Concept</p>
+                        <h4 class="heading-display text-white font-semibold text-lg mt-1">Dar al-Nour</h4>
+                        <p class="text-muted text-xs mt-1">Arabe · librairie &amp; calligraphie</p>
+                    </li>
+                    <li class="cards-slide" role="group" aria-roledescription="slide" aria-label="5 sur 9 : Blush Studio">
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Blush Studio : survoler ou toucher pour retourner">
+                            <div class="business-card-flip">
+                                <div class="business-card-face front"><img src="./carte/concept-girly-recto.webp" alt="Carte de visite Blush Studio, recto" loading="lazy" decoding="async" width="963" height="624"></div>
+                                <div class="business-card-face back"><img src="./carte/concept-girly-verso.webp" alt="Carte de visite Blush Studio, verso" loading="lazy" decoding="async" width="963" height="624"></div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] tracking-[0.22em] uppercase text-gold/80 mt-5">Concept</p>
+                        <h4 class="heading-display text-white font-semibold text-lg mt-1">Blush Studio</h4>
+                        <p class="text-muted text-xs mt-1">Girly · onglerie</p>
+                    </li>
+                    <li class="cards-slide" role="group" aria-roledescription="slide" aria-label="6 sur 9 : Iron Ring">
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Iron Ring : survoler ou toucher pour retourner">
+                            <div class="business-card-flip">
+                                <div class="business-card-face front"><img src="./carte/concept-boxe-recto.webp" alt="Carte de visite Iron Ring, recto" loading="lazy" decoding="async" width="963" height="624"></div>
+                                <div class="business-card-face back"><img src="./carte/concept-boxe-verso.webp" alt="Carte de visite Iron Ring, verso" loading="lazy" decoding="async" width="963" height="624"></div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] tracking-[0.22em] uppercase text-gold/80 mt-5">Concept</p>
+                        <h4 class="heading-display text-white font-semibold text-lg mt-1">Iron Ring</h4>
+                        <p class="text-muted text-xs mt-1">Boxe · club de boxe</p>
+                    </li>
+                    <li class="cards-slide" role="group" aria-roledescription="slide" aria-label="7 sur 9 : Racines">
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Racines : survoler ou toucher pour retourner">
+                            <div class="business-card-flip">
+                                <div class="business-card-face front"><img src="./carte/concept-naturo-recto.webp" alt="Carte de visite Racines, recto" loading="lazy" decoding="async" width="963" height="624"></div>
+                                <div class="business-card-face back"><img src="./carte/concept-naturo-verso.webp" alt="Carte de visite Racines, verso" loading="lazy" decoding="async" width="963" height="624"></div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] tracking-[0.22em] uppercase text-gold/80 mt-5">Concept</p>
+                        <h4 class="heading-display text-white font-semibold text-lg mt-1">Racines</h4>
+                        <p class="text-muted text-xs mt-1">Naturopathe · bien-être</p>
+                    </li>
+                    <li class="cards-slide" role="group" aria-roledescription="slide" aria-label="8 sur 9 : Petits Pas">
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Petits Pas : survoler ou toucher pour retourner">
+                            <div class="business-card-flip">
+                                <div class="business-card-face front"><img src="./carte/concept-enfantin-recto.webp" alt="Carte de visite Petits Pas, recto" loading="lazy" decoding="async" width="963" height="624"></div>
+                                <div class="business-card-face back"><img src="./carte/concept-enfantin-verso.webp" alt="Carte de visite Petits Pas, verso" loading="lazy" decoding="async" width="963" height="624"></div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] tracking-[0.22em] uppercase text-gold/80 mt-5">Concept</p>
+                        <h4 class="heading-display text-white font-semibold text-lg mt-1">Petits Pas</h4>
+                        <p class="text-muted text-xs mt-1">Enfantin · atelier d'éveil</p>
+                    </li>
+                    <li class="cards-slide" role="group" aria-roledescription="slide" aria-label="9 sur 9 : Atelier Forme">
+                        <div class="business-card-scene business-card-scene--landscape interactive" tabindex="0" role="button" aria-label="Carte de visite Atelier Forme : survoler ou toucher pour retourner">
+                            <div class="business-card-flip">
+                                <div class="business-card-face front"><img src="./carte/concept-abstrait-recto.webp" alt="Carte de visite Atelier Forme, recto" loading="lazy" decoding="async" width="963" height="624"></div>
+                                <div class="business-card-face back"><img src="./carte/concept-abstrait-verso.webp" alt="Carte de visite Atelier Forme, verso" loading="lazy" decoding="async" width="963" height="624"></div>
+                            </div>
+                        </div>
+                        <p class="text-[10px] tracking-[0.22em] uppercase text-gold/80 mt-5">Concept</p>
+                        <h4 class="heading-display text-white font-semibold text-lg mt-1">Atelier Forme</h4>
+                        <p class="text-muted text-xs mt-1">Abstrait · céramiste</p>
+                    </li>
+                    </ul>
+                    <button type="button" class="cards-nav cards-next interactive magnetic" aria-label="Carte suivante"><i class="fas fa-chevron-right" aria-hidden="true"></i></button>
+                    <div class="cards-dots" role="tablist" aria-label="Choisir une carte"></div>
                 </div>
             </div>
         </div>
@@ -3280,6 +3373,51 @@
 
             goTo(0, false);
             restartAutoplay();
+        });
+
+        document.querySelectorAll("[data-cards-carousel]").forEach((root) => {
+            const track = root.querySelector(".cards-track");
+            const slides = Array.from(track.querySelectorAll(".cards-slide"));
+            const dotsWrap = root.querySelector(".cards-dots");
+            const dots = slides.map((slide, i) => {
+                const b = document.createElement("button");
+                b.type = "button";
+                b.className = "cards-dot";
+                b.setAttribute("role", "tab");
+                b.setAttribute("aria-label", "Carte " + (i + 1));
+                b.addEventListener("click", () => go(i));
+                dotsWrap.appendChild(b);
+                return b;
+            });
+            let current = 0;
+            function go(i) {
+                const n = (i + slides.length) % slides.length;
+                const s = slides[n];
+                track.scrollTo({ left: s.offsetLeft - (track.clientWidth - s.offsetWidth) / 2, behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth" });
+            }
+            function mark(i) {
+                current = i;
+                slides.forEach((s, k) => s.classList.toggle("is-active", k === i));
+                dots.forEach((d, k) => { d.classList.toggle("is-active", k === i); d.setAttribute("aria-selected", k === i ? "true" : "false"); });
+            }
+            let raf = 0;
+            track.addEventListener("scroll", () => {
+                cancelAnimationFrame(raf);
+                raf = requestAnimationFrame(() => {
+                    const mid = track.scrollLeft + track.clientWidth / 2;
+                    let best = 0, dist = Infinity;
+                    slides.forEach((s, k) => { const d = Math.abs(s.offsetLeft + s.offsetWidth / 2 - mid); if (d < dist) { dist = d; best = k; } });
+                    if (best !== current) mark(best);
+                });
+            }, { passive: true });
+            root.querySelector(".cards-prev").addEventListener("click", () => go(current - 1));
+            root.querySelector(".cards-next").addEventListener("click", () => go(current + 1));
+            slides.forEach((s, k) => s.addEventListener("click", () => { if (k !== current) go(k); }));
+            root.addEventListener("keydown", (e) => {
+                if (e.key === "ArrowLeft") { e.preventDefault(); go(current - 1); }
+                if (e.key === "ArrowRight") { e.preventDefault(); go(current + 1); }
+            });
+            mark(0);
         });
 
         document.querySelectorAll(".business-card-scene").forEach((scene) => {
