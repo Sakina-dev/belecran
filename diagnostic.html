@@ -133,7 +133,7 @@
 
     </main>
 
-    <footer><span>Bel Écran © 2026 — Sakina Zariouh, EI</span><a href="./mentions-legales.html">Mentions légales</a></footer>
+    <footer><span>Bel Écran © 2026</span><a href="./mentions-legales.html">Mentions légales</a></footer>
 
     <script>
         (function beQuiz() {
@@ -229,7 +229,7 @@
             document.getElementById("be-quiz-cta").addEventListener("click", function () {
                 var weak = [];
                 Q.forEach(function (item, i) { if (answers[i] !== 2) weak.push(item.short); });
-                var msg = "Bonjour Sakina,\nJ'ai fait le diagnostic sur votre site : " + (root.dataset.score || 0) + "/10." +
+                var msg = "Bonjour,\nJ'ai fait le diagnostic sur votre site : " + (root.dataset.score || 0) + "/10." +
                     (weak.length ? "\nPoints à améliorer : " + weak.join(", ") + "." : "") +
                     "\nPouvez-vous regarder mon site ? Son adresse : ";
                 location.href = "./?type=" + encodeURIComponent("Refonte d'un site existant") + "&demande=" + encodeURIComponent(msg);
